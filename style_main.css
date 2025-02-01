@@ -1,0 +1,274 @@
+html, body{
+    margin:0;
+    padding:0;
+    min-width: 1140px; /* this is the important part*/
+}
+
+body{
+    background-color: 	
+    rgba(8,120,48,0.7);
+}
+
+.page{
+    height:700px;
+    width:700px;
+    background-color: white;
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+}
+
+.header{
+    height:60px;
+}
+
+.logo{
+    font-size: 30px;
+    width:180px;
+    height: 100%;
+    display:inline-block;
+    text-align: center;
+    line-height: 0px;
+    font-family: Arial;
+    font-weight: bold;
+    color:rgb(98, 98, 98);
+    padding-left: 10px;
+    vertical-align: top;
+}
+
+.green{
+    color: 	
+    rgb(8,120,48);
+}
+
+.searchbar{
+    display: inline-flex;
+    width: 300px;
+    height:100%;
+    vertical-align: top;
+    align-items: center;
+    justify-content: center;
+}
+
+input{
+    border-radius: 5px;
+    border-style: none;
+    width: 250px;
+    height:30px;
+    margin-right: 0;
+    background-color: rgb(201, 200, 200);
+}
+
+.search_button{
+    border-radius: 5px;
+    border-style: none;
+    margin-left:0;
+    height:30px;
+    text-align:center;
+    margin-top: 1px;
+    background-color:  rgb(8,120,48);
+    vertical-align: top;
+}
+
+.search_button:hover{
+    border-radius: 5px;
+    border-style: none;
+    margin-left:0;
+    height:30px;
+    text-align:center;
+    margin-top: 1px;
+    background-color:  rgba(8,120,48,0.7);
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.search_button:active{
+    border-radius: 5px;
+    border-style: none;
+    margin-left:0;
+    height:30px;
+    text-align:center;
+    margin-top: 1px;
+    background-color:  rgba(8,120,48,0.5);
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.profile_buttons{
+    display: inline-flex;
+    width:202px;
+    height:100%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+}
+
+.login_button{
+    font-size: 12px;
+    font-family: Helvetica;
+    margin-right:3px;
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    background-color: rgb(8,120,48);
+    color: white;
+}
+
+.signup_button{
+    font-size: 12px;
+    font-family: Helvetica;
+    margin-right:3px;
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    background-color: rgb(12, 170, 68);
+    color: white;
+}
+
+.view_profile{
+    font-size: 12px;
+    font-family: Helvetica;
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    background-color: rgb(12, 170, 68);
+    color: white;
+}
+
+.body{
+    height:550px;
+    width:700px;
+}
+
+.campus_facade{
+    height:270px;
+    width:100%
+}
+
+.slogan{
+    text-align: left;
+    margin:0;
+    font-size: 63px;
+}
+
+.slogan_text{
+    display:inline-block;
+    width:50%;
+    margin-left:20px;
+}
+
+.campus_image{
+    height:216px;
+    margin:0;
+    margin-right:20px;
+}
+
+.middle_text{
+    width:100%;
+    height:30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.reviews{
+    width:100%;
+    height:220px;
+    overflow:hidden;
+    display:flex
+}
+
+.review1{
+    display: inline-block;
+    height:100%;
+    width:50%;
+    margin:0;
+    padding-left: 20px;
+}
+
+.review1 p{
+    margin: 0;
+}
+
+.review1_image{
+    height:140px;
+}
+
+.review2_image{
+    height:140px;
+}
+
+.review2{
+    display: inline-block;
+    height:100%;
+    width:50%;
+    margin:0;
+    padding-left:40px;
+}
+
+.stars{
+    color:grey;
+    margin:0;
+}
+
+.review1_name{
+    height:auto;
+    width:auto;
+    margin:100px;
+}
+
+.review2_name{
+    margin:0;
+}
+
+.footer{
+    width:100%;
+    height:90px;
+    display:flex;
+}
+
+.contact_information{
+    height:100%;
+    width:33%;
+    background-color: #4D564F;
+}
+
+.contact_information p{
+    margin:0;
+    margin-bottom: 3px;
+    padding-left: 30px;
+    color:white;
+}
+
+.address{
+    height:100%;
+    width:33%;
+    background-color: #4D564F;
+}
+
+.address p{
+    margin:0;
+    margin-bottom: 3px;
+    padding-left: 23px;
+    color:white;
+}
+
+.copyright_notice{
+    height:100%;
+    width:34%;
+    background-color: #4D564F;
+}
+
+.copyright_notice p{
+    margin:0;
+    margin-bottom: 3px;
+    padding-left: 23px;
+    color:white;
+}
+
+.copyright_text{
+    font-size: 8px;
+}
+
