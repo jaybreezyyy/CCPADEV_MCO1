@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animo Eats</title>
+  <link rel="stylesheet" href="view_tagpuan.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="page">
+    <div class="container">  
+      <div class="header">
+        <div class="logo">
+          <a href="main_page.html" class="home_button">
+            <span class="green">A</span>nimo <span class="green">E</span>ats
+          </a>
+        </div>
+
+        <div class="searchbar">
+          <form>
+            <input type="text" placeholder="Search Here...">
+            <button class="search_button">&#128269;</button>
+          </form>
+        </div>
+
+        <div class="profilebuttons">
+          <a href="login.html" class="login_button">
+            Log In
+          </a>
+          <a href="signup.html" class="signup_button">
+            Sign Up
+          </a>
+          <a href="view_profile" class="view_profile_button">
+            View Profile
+          </a>
+        </div>
+
+
+
+      </div>
+
+
+      <div class="content">
+        <div class="establishmentprofile">
+          <div class="info">
+            <div class="title"><h1>Tagpuan    <span class="green">Berde</span></h1></div>
+            <div class="rating">★★★</div>
+            <div class="description"><p>
+              Tagpuan Berde is a popular Filipino restaurant located near De La Salle University (DLSU) in Manila, offering a variety of traditional dishes at affordable prices. It's a favored spot among students and locals seeking hearty meals without breaking the bank.
+              Situated in the bustling Taft Avenue area, Tagpuan Berde provides a cozy and welcoming atmosphere, ideal for casual dining. Its proximity to DLSU makes it a convenient choice for students and faculty looking for a quick and satisfying meal.
+
+              Whether you're craving traditional Filipino comfort food or seeking a budget-friendly dining option near DLSU, Tagpuan Berde offers a satisfying experience that combines taste, affordability, and convenience.
+            </p>
+            <div class="reviewbutton">
+              <a href="write_review.html" class="buttondesign">
+                Write A Review ★
+              </a>
+            </div>
+          </div>
+          </div>
+          <div class="photo"></div>
+          </div>
+        </div>
+        
+        <div class="reviews">
+          <div class="reviewtitle"><h1>Recent Reviews</h1></div>
+          <div class="reviewpost">
+            <div class="postinfo">
+              <div class="profilepicture"></div>
+              <div class="usertitle">
+                <div class="username">username: <span><a href="visitprofile4.html" class="username">Gorgon Ramsay</a></span></div>
+                <div class="title">title: delicious.....</div>
+              </div>
+            </div>
+            <div class="body"><p>
+              If you’re ever in the Taft area, especially near DLSU, you’ve got to try Tagpuan Berde—it’s honestly one of my favorite go-to spots for comfort food. I’ve been here multiple times, and every time, it delivers.
+
+              The Bulalo is a must-try! The broth is rich, flavorful, and packed with that slow-cooked goodness. The meat just falls off the bone, and the bone marrow? Chef’s kiss. If you’re craving something hearty, it’s perfect for you.
+
+              I also love their Ginataang Tilapia—the fish is perfectly cooked, and the coconut milk sauce is so creamy and comforting. It’s one of those dishes that warms you right up. For something lighter, their Chop Suey is another winner, with a great balance of vegetables and meat that’s stir-fried just right.
+
+              The prices are super reasonable, and considering the portion sizes, it’s such a good value for money. The place itself is cozy and chill, with a casual vibe perfect for hanging out with friends or grabbing a quick lunch between classes.
+
+              Service is always friendly, and the food arrives quickly, which is great when you’re in a rush. Definitely recommend Tagpuan Berde for anyone in the area looking for delicious Filipino comfort food that doesn’t break the bank. You won’t be disappointed!
+
+            </p></div>
+            <div class="feedback">
+              <button class="helpful-button" style="font-size:24px">
+                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+              </button>
+            </div>
+          </div>
+
+      </div>
+
+
+
+      <div class="footer">
+        <div class="contact_information">
+            <p><span class="green">&phone; </span>Contact Us</p>
+            <p><b>Phone: </b>091231231123</p>
+            <p><b>Email: </b>animoeats@gmail.com</p>
+        </div>
+        <div class="address">
+            <p><span class="green">&#127988;</span> Address</p>
+            <p>2401 Taft Ave, Malate, Manila, 1004 Metro Manila</p>
+        </div>
+        <div class="copyright_notice">
+            <p><span class="green">&#9888;</span> Copyright Notice</p>
+            <p class="copyright_text">© 2025 Animo Eats. All Rights Reserved. This work, including all text, images, graphics, and other content, is protected by copyright laws and international treaties. Unauthorized reproduction, distribution, or modification of any part of this work is strictly prohibited without prior written permission from the copyright owner.</p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script>
+    document.querySelectorAll(".helpful-button").forEach(button => {
+      button.addEventListener("click", function() {
+        if (this.style.backgroundColor === "green") {
+          this.style.backgroundColor = "";
+          this.style.color = "";
+          this.querySelector(".thumb-icon").style.color = "green";
+        } else {
+          this.style.backgroundColor = "green";
+          this.style.color = "white";
+          this.querySelector(".thumb-icon").style.color = "white";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

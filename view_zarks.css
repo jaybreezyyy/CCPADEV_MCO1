@@ -1,0 +1,352 @@
+.page{
+  display: flex;
+  height: auto;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.header{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_button{
+  background-color: white;
+	border: none;
+  color: rgb(98, 98, 98);
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 4px;
+  width:180px;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+.green{
+  color:rgb(8,120,48);
+}
+
+.searchbar{
+  display: inline-flex;
+  width: 700px;
+  height:100%;
+  vertical-align: top;
+  align-items: center;
+  justify-content: center;
+}
+
+input{
+  border-radius: 5px;
+  border-style: none;
+  width: 650px;
+  height:30px;
+  margin-right: 0;
+  background-color: rgb(201, 200, 200);
+}
+
+.search_button{
+  border-radius: 5px;
+  border-style: none;
+  margin-left:0;
+  height:30px;
+  text-align:center;
+  margin-top: 1px;
+  background-color:  rgb(8,120,48);
+  vertical-align: top;
+}
+
+.search_button:hover{
+  border-radius: 5px;
+  border-style: none;
+  margin-left:0;
+  height:30px;
+  text-align:center;
+  margin-top: 1px;
+  background-color:  rgba(8,120,48,0.7);
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.search_button:active{
+  border-radius: 5px;
+  border-style: none;
+  margin-left:0;
+  height:30px;
+  text-align:center;
+  margin-top: 1px;
+  background-color:  rgba(8,120,48,0.5);
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.profilebuttons{
+  display: inline-flex;
+  width: auto;
+  height:100%;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+
+}
+
+.login_button{
+  font-size: 15px;
+  font-family: Helvetica;
+  margin-right:3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  padding-left: 20;
+  padding-right: 20;
+  
+}
+
+.signup_button{
+  font-size: 15px;
+  font-family: Helvetica;
+  margin-right:3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.view_profile_button{
+  font-size: 15px;
+  font-family: Helvetica;
+  margin-right:3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.establishmentprofile{
+  display:flex;
+  height: auto;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.info, .photo {
+  flex: 1; /* Each takes 50% width */
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  height: 100%;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.photo{
+  background-image: url("zarks.jpg");
+  width: 100%;
+  height: 400px;
+  background-size: contain; /* Ensures full image fits */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 5px;
+}
+
+.rating{
+  font-size: 30px;
+  color:rgb(12, 170, 68)
+}
+
+.title{
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.description{
+  font-size: 20px;
+}
+
+.reviewbutton{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.buttondesign{
+  font-size: 30px;
+  font-family: Helvetica;
+  margin-right:3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.reviews{
+  margin-top: 50px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  font-size: 45px;
+}
+
+.reviewtitle{
+  text-align: center;
+}
+
+.reviewpost{
+  margin: 50px;
+}
+
+.profilepicture{
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  background-image: url("reviewer5.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.usertitle{
+  margin-left: 10px;
+  display:flex;
+  flex-direction: column;
+}
+
+.username{
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.title{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.postinfo{
+  display: flex;
+}
+
+.body{
+  font-size: 20px;
+  background-color: rgb(155, 155, 155);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border:solid 8px;
+  border-color:rgb(155, 155, 155);
+  border-radius: 5px;
+}
+.footer{
+  width:100%;
+  height:90px;
+  display:flex;
+  border: solid 15px;
+  border-color: #4D564F;
+}
+
+.contact_information{
+  height:100%;
+  width:33%;
+  background-color: #4D564F;
+}
+
+.contact_information p{
+  margin:0;
+  margin-bottom: 3px;
+  padding-left: 30px;
+  color:white;
+}
+
+.address{
+  height:100%;
+  width:33%;
+  background-color: #4D564F;
+}
+
+.address p{
+  margin:0;
+  margin-bottom: 3px;
+  padding-left: 23px;
+  color:white;
+}
+
+.copyright_notice{
+  height:100%;
+  width:34%;
+  background-color: #4D564F;
+}
+
+.copyright_notice p{
+  margin:0;
+  margin-bottom: 3px;
+  padding-left: 23px;
+  color:white;
+}
+
+.copyright_text{
+  font-size: 8px;
+}
