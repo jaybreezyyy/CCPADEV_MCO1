@@ -79,13 +79,36 @@
               #24Chicken #KoreanFriedChicken #MustTry
             </p></div>
             <div class="feedback">
-              <button style="font-size:24px">Like <i class="fa fa-thumbs-up" style="color:green"></i></button>
-              <button style="font-size:24px">Dislike <i class="fa fa-thumbs-down" style="color:red"></i></button>
+              <button class="helpful-button" style="font-size:24px">
+                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+              </button>
             </div>
-
-
           </div>
 
+          <div class="reviewpost">
+            <div class="postinfo">
+              <div class="profilepicture"></div>
+              <div class="usertitle">
+                <div class="username">username: <span><a href="visitprofile2.html" class="username">JEAN D0333</a></span></div>
+                <div class="title">title: best in taft</div>
+              </div>
+            </div>
+            <div class="body"><p>
+              I finally got to try 24 Chicken, and I was not disappointed! The chicken was perfectly crispy, flavorful, and well-seasoned, even without sauce. I ordered the Jack Daniel’s and Spicy Yangnyeom flavors, and both were amazing! The Jack Daniel’s had a unique, slightly smoky-sweet taste, while the Spicy Yangnyeom had just the right level of heat.
+
+              What I love most is that their chicken is boneless, making it easy to eat, and the portions are generous for the price. I also tried their Kimchi Rice, which complemented the chicken really well. Delivery was quick, and the food arrived hot and fresh.
+
+              Overall, 24 Chicken is a must-try for anyone who loves Korean fried chicken! Will definitely order again. 🍗🔥💯
+
+              #24ChickenPH #CrispyAndTasty #KoreanFriedChicken
+            </p></div>
+            <div class="feedback">
+              <button class="helpful-button" style="font-size:24px">
+                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+              </button>
+            </div>
+          </div>
+          
 
       </div>
 
@@ -109,6 +132,24 @@
 
     </div>
   </div>
-  
+
+
+
+
+  <script>
+    document.querySelectorAll(".helpful-button").forEach(button => {
+      button.addEventListener("click", function() {
+        if (this.style.backgroundColor === "green") {
+          this.style.backgroundColor = "";
+          this.style.color = "";
+          this.querySelector(".thumb-icon").style.color = "green";
+        } else {
+          this.style.backgroundColor = "green";
+          this.style.color = "white";
+          this.querySelector(".thumb-icon").style.color = "white";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
