@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animo Eats</title>
+  <link rel="stylesheet" href="view_bacsilog.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="page">
+    <div class="container">  
+      <div class="header">
+        <div class="logo">
+          <a href="main_page.html" class="home_button">
+            <span class="green">A</span>nimo <span class="green">E</span>ats
+          </a>
+        </div>
+
+        <div class="searchbar">
+          <form>
+            <input type="text" placeholder="Search Here...">
+            <button class="search_button">&#128269;</button>
+          </form>
+        </div>
+
+        <div class="profilebuttons">
+          <a href="login.html" class="login_button">
+            Log In
+          </a>
+          <a href="signup.html" class="signup_button">
+            Sign Up
+          </a>
+          <a href="view_profile" class="view_profile_button">
+            View Profile
+          </a>
+        </div>
+
+
+
+      </div>
+
+
+      <div class="content">
+        <div class="establishmentprofile">
+          <div class="info">
+            <div class="title"><h1>Ate Rica's  <span class="green">Bacsilog</span></h1></div>
+            <div class="rating">★★★★</div>
+            <div class="description"><p>
+              Ate Rica's Bacsilog is a renowned Filipino eatery celebrated for its signature "Bacsilog" dish—a delightful combination of crispy bacon, garlic fried rice, and a perfectly cooked egg, all generously topped with a special cheese sauce. 
+              Whether you're craving a hearty breakfast or a flavorful meal at any time of the day, Ate Rica's Bacsilog provides a variety of options that cater to diverse tastes, all served with their signature cheese sauce that adds a unique twist to traditional Filipino dishes.
+              With over 180 branches nationwide, Ate Rica's Bacsilog offers a casual and welcoming atmosphere, making it an ideal spot for a quick and satisfying meal.
+            </p>
+            <div class="reviewbutton">
+              <a href="write_review.html" class="buttondesign">
+                Write A Review ★
+              </a>
+            </div>
+          </div>
+          </div>
+          <div class="photo"></div>
+          </div>
+        </div>
+        
+        <div class="reviews">
+          <div class="reviewtitle"><h1>Recent Reviews</h1></div>
+          <div class="reviewpost">
+            <div class="postinfo">
+              <div class="profilepicture"></div>
+              <div class="usertitle">
+                <div class="username">username: <span><a href="visitprofile3.html" class="username">Ninong Ry</a></span></div>
+                <div class="title">title: perfect for college students</div>
+              </div>
+            </div>
+            <div class="body"><p>
+              Kaya, mga ka-batch, I have to tell you about this place called Ate Rica’s Bacsilog—seriously, it’s a game-changer when it comes to breakfast! You know I love my bacon, and their Bacsilog? Wow. Crispy bacon? Check. Garlic rice? You know I’m all about that flavor. Topped with a perfect egg? Classic. But the best part, the one that sets it apart from the rest, is that cheese sauce. Oooh, it just takes everything to a whole new level.
+
+              When you take a bite of that sizzling goodness, you get the crispy bacon with that cheesy kick, and then the garlic rice? Ugh, it just makes everything come together perfectly. Imagine having all that on your plate for breakfast, and you’ll feel like you’re living your best life. I don’t care what time of day it is, you can definitely enjoy this meal.
+
+              I’ve also tried their Tapsilog and Tocilog, and those are solid options too, but it’s the Bacsilog that I keep coming back for. Legit. The portions are big enough to fill you up, and their prices are pretty reasonable, so you get good value for money. The ambiance is chill, perfect for a quick, no-fuss meal with the barkada.
+
+              So if you want to level up your breakfast game, head to Ate Rica’s Bacsilog. Tara, kain tayo, and let’s enjoy this crispy, cheesy goodness together. You won’t regret it, promise!
+
+            </p></div>
+            <div class="feedback">
+              <button class="helpful-button" style="font-size:24px">
+                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+              </button>
+            </div>
+          </div>
+
+      </div>
+
+
+
+      <div class="footer">
+        <div class="contact_information">
+            <p><span class="green">&phone; </span>Contact Us</p>
+            <p><b>Phone: </b>091231231123</p>
+            <p><b>Email: </b>animoeats@gmail.com</p>
+        </div>
+        <div class="address">
+            <p><span class="green">&#127988;</span> Address</p>
+            <p>2401 Taft Ave, Malate, Manila, 1004 Metro Manila</p>
+        </div>
+        <div class="copyright_notice">
+            <p><span class="green">&#9888;</span> Copyright Notice</p>
+            <p class="copyright_text">© 2025 Animo Eats. All Rights Reserved. This work, including all text, images, graphics, and other content, is protected by copyright laws and international treaties. Unauthorized reproduction, distribution, or modification of any part of this work is strictly prohibited without prior written permission from the copyright owner.</p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script>
+    document.querySelectorAll(".helpful-button").forEach(button => {
+      button.addEventListener("click", function() {
+        if (this.style.backgroundColor === "green") {
+          this.style.backgroundColor = "";
+          this.style.color = "";
+          this.querySelector(".thumb-icon").style.color = "green";
+        } else {
+          this.style.backgroundColor = "green";
+          this.style.color = "white";
+          this.querySelector(".thumb-icon").style.color = "white";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

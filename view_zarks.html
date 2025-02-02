@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animo Eats</title>
+  <link rel="stylesheet" href="view_zarks.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="page">
+    <div class="container">  
+      <div class="header">
+        <div class="logo">
+          <a href="main_page.html" class="home_button">
+            <span class="green">A</span>nimo <span class="green">E</span>ats
+          </a>
+        </div>
+
+        <div class="searchbar">
+          <form>
+            <input type="text" placeholder="Search Here...">
+            <button class="search_button">&#128269;</button>
+          </form>
+        </div>
+
+        <div class="profilebuttons">
+          <a href="login.html" class="login_button">
+            Log In
+          </a>
+          <a href="signup.html" class="signup_button">
+            Sign Up
+          </a>
+          <a href="view_profile" class="view_profile_button">
+            View Profile
+          </a>
+        </div>
+
+
+
+      </div>
+
+
+      <div class="content">
+        <div class="establishmentprofile">
+          <div class="info">
+            <div class="title"><h1>Zark's     <span class="green">Burger</span></h1></div>
+            <div class="rating">★★★★</div>
+            <div class="description"><p>
+              Zark's Burger is a renowned Filipino burger joint that has been serving hearty and flavorful burgers since 2009. Founded by Zark Varona, a former seafarer, the first branch was established along Taft Avenue in Manila. The brand has since expanded to numerous locations across the Philippines, offering a diverse menu that caters to burger enthusiasts and food lovers alike. 
+              With multiple branches across major malls and cities in the Philippines, Zark's Burger provides a casual and welcoming atmosphere suitable for individuals and groups. The establishments are designed to accommodate both dine-in and take-out customers, ensuring a convenient dining experience.
+              Whether you're a burger aficionado or simply in the mood for a satisfying meal, Zark's Burger offers a variety of options that promise quality, taste, and value.
+            </p>
+            <div class="reviewbutton">
+              <a href="write_review.html" class="buttondesign">
+                Write A Review ★
+              </a>
+            </div>
+          </div>
+          </div>
+          <div class="photo"></div>
+          </div>
+        </div>
+        
+        <div class="reviews">
+          <div class="reviewtitle"><h1>Recent Reviews</h1></div>
+          <div class="reviewpost">
+            <div class="postinfo">
+              <div class="profilepicture"></div>
+              <div class="usertitle">
+                <div class="username">username: <span><a href="visitprofile4.html" class="username">Fake_Lasallian123456</a></span></div>
+                <div class="title">title: heart attack burger</div>
+              </div>
+            </div>
+            <div class="body"><p>
+              If you're ever around De La Salle University, make sure to swing by Zark's Burgers – it’s the perfect spot to satisfy your burger cravings! Located just across from DLSU, it's incredibly convenient for students, and the food is next-level.
+
+I went for their signature Tombstone Burger, and wow, this beast of a burger definitely lives up to the hype. Eight juicy patties, layers of melted cheese, and that special cheese sauce—each bite was indulgent and so filling! The portion size is huge, and it’s honestly a challenge to finish, but it’s totally worth it for anyone who loves a massive burger.
+
+The Thunder Mac N' Cheese is another favorite of mine. A juicy burger patty topped with creamy mac and cheese—what a genius combo. It’s the kind of burger that you can’t stop thinking about after you’ve had it. For anyone who loves cheese, I highly recommend The Three Pointer burger, which is packed with three different kinds of cheese. Cheesy goodness in every bite.
+
+The place itself has a casual, no-fuss vibe that’s perfect for hanging out with friends or grabbing a quick bite. Plus, the service is always friendly, and the food arrives fast—great for students on a time crunch between classes.
+
+Overall, if you're in the Taft area, Zark's Burgers is a must-visit. They have everything: tasty burgers, massive portions, and a chill atmosphere. Whether you're there to tackle the Tombstone or enjoy a classic burger, you're guaranteed a satisfying meal every time.
+
+            </p></div>
+            <div class="feedback">
+              <button class="helpful-button" style="font-size:24px">
+                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+              </button>
+            </div>
+          </div>
+
+      </div>
+
+
+
+      <div class="footer">
+        <div class="contact_information">
+            <p><span class="green">&phone; </span>Contact Us</p>
+            <p><b>Phone: </b>091231231123</p>
+            <p><b>Email: </b>animoeats@gmail.com</p>
+        </div>
+        <div class="address">
+            <p><span class="green">&#127988;</span> Address</p>
+            <p>2401 Taft Ave, Malate, Manila, 1004 Metro Manila</p>
+        </div>
+        <div class="copyright_notice">
+            <p><span class="green">&#9888;</span> Copyright Notice</p>
+            <p class="copyright_text">© 2025 Animo Eats. All Rights Reserved. This work, including all text, images, graphics, and other content, is protected by copyright laws and international treaties. Unauthorized reproduction, distribution, or modification of any part of this work is strictly prohibited without prior written permission from the copyright owner.</p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script>
+    document.querySelectorAll(".helpful-button").forEach(button => {
+      button.addEventListener("click", function() {
+        if (this.style.backgroundColor === "green") {
+          this.style.backgroundColor = "";
+          this.style.color = "";
+          this.querySelector(".thumb-icon").style.color = "green";
+        } else {
+          this.style.backgroundColor = "green";
+          this.style.color = "white";
+          this.querySelector(".thumb-icon").style.color = "white";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
