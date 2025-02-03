@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animo Eats</title>
+    <link rel="stylesheet" href="edit_profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <a href="main_page.html" class="home_button">
+              <span class="green">A</span>nimo <span class="green">E</span>ats
+            </a>
+          </div>
+
+          <div class="searchbar">
+            <form>
+              <input type="text" placeholder="Search Here..." />
+              <button class="search_button">&#128269;</button>
+            </form>
+          </div>
+
+          <div class="profilebuttons">
+            <a href="login.html" class="login_button"> Log In </a>
+            <a href="signup.html" class="signup_button"> Sign Up </a>
+            <a href="view_profile.html" class="view_profile_button">
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <div class="content">
+            <div class="edit-title">
+                <h1>Edit Profile</h1>
+            </div>
+            <form class="input-area">
+                <label for="new-name">New Username:</label> 
+                <input type="text" id="new-name" name="new-name"> <br> 
+                <label for="new-pass">New Password:</label> 
+                <input type="password" id="new-pass" name="new-pass"> <br> 
+                <label for="avatar-upload">Avatar:</label> 
+                <input type="file" id="avatar-upload" accept="image/*">  <br> 
+                <label for="short-desc">Short Description:</label> 
+                <textarea id="short-desc" name="short-desc"></textarea> <br> 
+                <div class="buttons">
+                    <a href="view_profile.html">
+                        <input type="button" id="save-button" value="Save Changes">
+                    </a>
+                    <a href="main_page.html">
+                        <input type="button" id="delete-button" value="Delete Account">
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer">
+          <div class="contact_information">
+            <p><span class="green">&phone; </span>Contact Us</p>
+            <p><b>Phone: </b>091231231123</p>
+            <p><b>Email: </b>animoeats@gmail.com</p>
+          </div>
+          <div class="address">
+            <p><span class="green">&#127988;</span> Address</p>
+            <p>2401 Taft Ave, Malate, Manila, 1004 Metro Manila</p>
+          </div>
+          <div class="copyright_notice">
+            <p><span class="green">&#9888;</span> Copyright Notice</p>
+            <p class="copyright_text">
+              © 2025 Animo Eats. All Rights Reserved. This work, including all
+              text, images, graphics, and other content, is protected by
+              copyright laws and international treaties. Unauthorized
+              reproduction, distribution, or modification of any part of this
+              work is strictly prohibited without prior written permission from
+              the copyright owner.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
