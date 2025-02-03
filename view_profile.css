@@ -325,3 +325,23 @@ input{
   padding-right: 20;
   font-weight: bold;
 }
+
+.ratingdiv{
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  
+}
+
+.editreview{
+    height: 25px;
+    width: 25px;
+    background-image: url("edit.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5%;
+    display: inline-block;
+    float:right;
+
+}
