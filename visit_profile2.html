@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animo Eats</title>
-  <link rel="stylesheet" href="view_dixies.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="visit_profile2.css">
 </head>
 <body>
   <div class="page">
-    <div class="container">  
+    <div class="container">
       <div class="header">
         <div class="logo">
           <a href="main_page.html" class="home_button">
@@ -35,40 +34,41 @@
             View Profile
           </a>
         </div>
-
-
-
       </div>
 
-
       <div class="content">
-        <div class="establishmentprofile">
+        <div class="profile">
+          <div class="profilepicture"></div>
           <div class="info">
-            <div class="title"><h1>Dixie <span class="green">'s</span></h1></div>
-            <div class="rating">★</div>
-            <div class="description"><p>Dixie's is a cozy eatery located at the corner of Castro Street and Taft Avenue in Malate, Manila, near De La Salle University. Known for its affordable and satisfying Filipino comfort food, it's a favorite among students and locals seeking budget-friendly meals.</p>
-            <div class="reviewbutton">
-              <a href="write_review.html" class="buttondesign">
-                Write A Review ★
-              </a>
+            <div class="username"><h1>Karennnnnn</h1></div>
+            <div class="description">
+              <ul>
+                <li>📍 Suburban Neighborhood Watch Captain</li>
+                <li>📞 Can I Speak to the Manager?</li>
+                <p>
+                  Hi, I’m Karen! A proud mother of three honor-roll students, an avid coffee enthusiast (extra caramel, no foam, two pumps of entitlement), and a passionate community watchdog. You’ll often find me at the local HOA meetings, advocating for stricter lawn care regulations, or leaving detailed Yelp reviews about customer service experiences that did not meet my standards.
+
+I believe in fairness, order, and that expired coupons should still be accepted. If something’s not right, trust me—I’ll make sure it is.
+
+Let's connect! But only if you're prepared to meet my expectations. 😌
+                </p>
+              </ul>
             </div>
           </div>
-          </div>
-          <div class="photo"></div>
-          </div>
+
         </div>
         
-        <div class="reviews">
-          <div class="reviewtitle"><h1>Recent Reviews</h1></div>
+
+        <div class="review">
+          <div class="reviewtitle"><h1>Recent Activity</h1></div>
           <div class="reviewpost">
-            <div class="postinfo">
-              <div class="profilepicture"></div>
-              <div class="usertitle">
-                <div class="username">username: <span><a href="visit_profile2.html" class="username">Karennnnnn</a></span></div>
-                <div class="title">title: Cheap but not as good</div>
-              </div>
-            </div>
-            <div class="body"><p>
+            <div class="establishmentname">Establishment: <span><a href="view_dixies.html" class="establishmentname">Dixie's</a></span></div>
+            <div class="title">Title: Cheap but not as good</div>
+            <div class="title">Rating: <span class="rating">★</span> </div>
+          </div>
+
+          <div class="body">
+            <p>
               I was really excited to try Dixie's after hearing good things about it, but sadly, my experience was disappointing. The service was slow, and it took longer than expected for our orders to arrive, even though the place wasn't that busy. When the food finally came, it was lukewarm instead of hot, which made the experience less enjoyable.
 
               I ordered the Sizzling Chicken Steak, but it didn’t live up to the hype. The meat was tough and lacked flavor. The sizzling plate also wasn’t hot enough to give the sizzling experience I was expecting. I also tried their Tapsilog, but the tapa was too salty, and the rice was undercooked, which was disappointing.
@@ -76,17 +76,15 @@
               On top of that, the ambiance was a bit uncomfortable—the place felt cramped, and the tables were too close together. It didn’t feel very cozy or inviting.
 
               Overall, I was expecting more based on the reviews, but unfortunately, my visit to Dixie's Taft didn’t meet the mark. I’m not sure if I’ll be coming back anytime soon.
-
-            </p></div>
-            <div class="feedback">
-              <button class="helpful-button" style="font-size:24px">
-                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
-              </button>
-            </div>
+            </p>
           </div>
 
-      </div>
+            
+          </div>
+        </div>
+        
 
+      </div>
 
 
       <div class="footer">
@@ -103,28 +101,12 @@
             <p><span class="green">&#9888;</span> Copyright Notice</p>
             <p class="copyright_text">© 2025 Animo Eats. All Rights Reserved. This work, including all text, images, graphics, and other content, is protected by copyright laws and international treaties. Unauthorized reproduction, distribution, or modification of any part of this work is strictly prohibited without prior written permission from the copyright owner.</p>
         </div>
-    </div>
 
     </div>
+
+
   </div>
 
 
-
-
-  <script>
-    document.querySelectorAll(".helpful-button").forEach(button => {
-      button.addEventListener("click", function() {
-        if (this.style.backgroundColor === "green") {
-          this.style.backgroundColor = "";
-          this.style.color = "";
-          this.querySelector(".thumb-icon").style.color = "green";
-        } else {
-          this.style.backgroundColor = "green";
-          this.style.color = "white";
-          this.querySelector(".thumb-icon").style.color = "white";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
