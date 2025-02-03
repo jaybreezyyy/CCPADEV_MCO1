@@ -1,0 +1,333 @@
+.page{
+    display: flex;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  
+  .container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .header{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .home_button{
+    background-color: white;
+      border: none;
+    color: rgb(98, 98, 98);
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    width:180px;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Arial;
+  }
+  
+  .green{
+    color:rgb(8,120,48);
+  }
+  
+  .searchbar{
+    display: inline-flex;
+    width: 700px;
+    height:100%;
+    vertical-align: top;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  input{
+    border-radius: 5px;
+    border-style: none;
+    width: 650px;
+    height:30px;
+    margin-right: 0;
+    background-color: rgb(201, 200, 200);
+  }
+  
+  .search_button{
+    border-radius: 5px;
+    border-style: none;
+    margin-left:0;
+    height:30px;
+    text-align:center;
+    margin-top: 1px;
+    background-color:  rgb(8,120,48);
+    vertical-align: top;
+  }
+  
+  .search_button:hover{
+    border-radius: 5px;
+    border-style: none;
+    margin-left:0;
+    height:30px;
+    text-align:center;
+    margin-top: 1px;
+    background-color:  rgba(8,120,48,0.7);
+    vertical-align: top;
+    cursor: pointer;
+  }
+  
+  .search_button:active{
+    border-radius: 5px;
+    border-style: none;
+    margin-left:0;
+    height:30px;
+    text-align:center;
+    margin-top: 1px;
+    background-color:  rgba(8,120,48,0.5);
+    vertical-align: top;
+    cursor: pointer;
+  }
+  
+  .profilebuttons{
+    display: inline-flex;
+    width: auto;
+    height:100%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+  
+  }
+
+  .content {
+    background-color: #72d072;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+  
+  .login_button{
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-right:3px;
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    background-color: rgb(12, 170, 68);
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    height: auto;
+    text-align: center;
+    padding-left: 20;
+    padding-right: 20;
+    
+  }
+  
+  .signup_button{
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-right:3px;
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    background-color: rgb(12, 170, 68);
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    height: auto;
+    text-align: center;
+    margin-left: 15px;
+    padding-left: 20;
+    padding-right: 20;
+  }
+  
+  .view_profile_button{
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-right:3px;
+    border-radius: 5px;
+    border-style: none;
+    height: 30px;
+    background-color: rgb(12, 170, 68);
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    height: auto;
+    text-align: center;
+    margin-left: 15px;
+    padding-left: 20;
+    padding-right: 20;
+  }
+  
+ 
+
+  .review-box {
+    width: 80%;
+    background-color:white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 100px;
+  }
+  
+  
+  .edit-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgb(12, 170, 68);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+   
+  
+  .footer{
+    width:100%;
+    height:90px;
+    display:flex;
+    border: solid 15px;
+    border-color: #4D564F;
+  }
+
+  .contact_information{
+    height:100%;
+    width:33%;
+    background-color: #4D564F;
+  }
+  
+  .contact_information p{
+    margin:0;
+    margin-bottom: 3px;
+    padding-left: 30px;
+    color:white;
+  }
+
+  .address{
+    height:100%;
+    width:33%;
+    background-color: #4D564F;
+  }
+  
+  .address p{
+    margin:0;
+    margin-bottom: 3px;
+    padding-left: 23px;
+    color:white;
+  }
+  
+  .copyright_notice{
+    height:100%;
+    width:34%;
+    background-color: #4D564F;
+  }
+  
+  .copyright_notice p{
+    margin:0;
+    margin-bottom: 3px;
+    padding-left: 23px;
+    color:white;
+  }
+  
+  .copyright_text{
+    font-size: 8px;
+  }
+
+
+.content-box {
+    background-color: white;
+    width: 60%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.edit-title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.green-text {
+    color: rgb(8, 120, 48);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+.star-rating {
+    font-size: 24px;
+    color: gold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.save-button,
+.delete-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.save-button {
+    background-color: rgb(12, 170, 68);
+    color: white;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+}
+
+
+.review-text {
+    background-color: rgb(201, 200, 200);
+    color: #000;
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    white-space: pre-wrap; 
+    overflow: auto; 
+    min-height: 100px; 
+}
+
+
+
