@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animo Eats</title>
-    <link rel="stylesheet" href="sign_up.css" />
+    <link rel="stylesheet" href="signup.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -37,24 +37,24 @@
         </div>
 
         <div class="content">
-            <div class="edit-title">
-                <h1>Sign up now to Animo <span class="eats">EATS</span></h1>
+          <div class="edit-title">
+            <h1>Sign up now to Animo <span class="eats">EATS</span></h1>
+          </div>
+          <form class="input-area">
+            <label for="new-name">Username:</label>
+            <input type="text" id="new-name" name="new-name" /> <br />
+            <label for="new-pass">Password:</label>
+            <input type="password" id="new-pass" name="new-pass" /> <br />
+            <label for="avatar-upload">Avatar:</label>
+            <input type="file" id="avatar-upload" accept="image/*" /> <br />
+            <label for="short-desc">Short Description:</label>
+            <textarea id="short-desc" name="short-desc"></textarea> <br />
+            <div class="buttons">
+              <a href="view_profile.html">
+                <input type="button" id="signup-button" value="Sign up" />
+              </a>
             </div>
-            <form class="input-area">
-                <label for="new-name">Username:</label> 
-                <input type="text" id="new-name" name="new-name"> <br> 
-                <label for="new-pass">Password:</label> 
-                <input type="password" id="new-pass" name="new-pass"> <br> 
-                <label for="avatar-upload">Avatar:</label> 
-                <input type="file" id="avatar-upload" accept="image/*">  <br> 
-                <label for="short-desc">Short Description:</label> 
-                <textarea id="short-desc" name="short-desc"></textarea> <br> 
-                <div class="buttons">
-                    <a href="view_profile.html">
-                        <input type="button" id="signup-button" value="Sign up">
-                    </a>
-                </div>
-            </form>
+          </form>
         </div>
 
         <div class="footer">
@@ -81,6 +81,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
