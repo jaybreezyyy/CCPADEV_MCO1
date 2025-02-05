@@ -174,7 +174,7 @@ input {
 .campus_facade {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 60%;
   height: auto;
   justify-content: center;
   align-items: center;
@@ -194,21 +194,23 @@ input {
 }
 
 .campus_image {
-  height: 216px;
+  height: 260px;
   margin: 0;
   margin-right: 20px;
+  width: auto;
 }
 
 .middle_text {
   width: 100%;
   
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .local-flavors-section{
     display:flex;
     flex-direction: column;
+    margin-bottom: 10%;
 }
 
 .reviews {
@@ -247,7 +249,7 @@ input {
 }*/
 
 .stars {
-  color: grey;
+  color: rgb(12, 170, 68);
   margin: 0;
 }
 
