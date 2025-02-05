@@ -199,6 +199,8 @@ input {
 .title {
   text-align: center;
   font-size: 30px;
+  font-family: "Kalam", serif;
+  font-style: normal;
 }
 
 .review {
@@ -217,6 +219,7 @@ input {
 }
 .titletext {
   font-size: 30px;
+  font-family: "Hanuman", serif;
 }
 
 .userinput {

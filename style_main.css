@@ -181,6 +181,7 @@ input {
 }
 
 .slogan {
+  font-family: "Gelasio", serif;
   text-align: left;
   margin: 0;
   font-size: 63px;
@@ -202,7 +203,9 @@ input {
 
 .middle_text {
   width: 100%;
-  
+  font-family: "Kalam", serif;
+  font-weight: 400;
+  font-style: normal;
   text-align: center;
   font-size: 40px;
 }
@@ -215,7 +218,7 @@ input {
 
 .reviews {
   width: 100%;
-  
+  font-family: "Hanuman", serif;
   overflow: hidden;
   display: flex;
 }
@@ -267,6 +270,7 @@ input {
   width: 100%;
   height: 90px;
   display: flex;
+  font-family: "Hanuman", serif;
 }
 
 .contact_information {

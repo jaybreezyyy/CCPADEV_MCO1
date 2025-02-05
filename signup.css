@@ -175,6 +175,8 @@ input {
 .edit-title {
   text-align: center;
   font-size: 35px;
+  font-family: "Kalam", serif;
+  font-style: normal;
 }
 
 .eats {
@@ -189,6 +191,7 @@ input {
   max-width: 600px;
   min-width: 200px;
   width: 90%;
+  font-family: "Hanuman", serif;
 }
 
 #new-name {

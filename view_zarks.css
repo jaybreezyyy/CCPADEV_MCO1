@@ -217,6 +217,7 @@ input{
 
 .description{
   font-size: 20px;
+  font-family: "Hanuman", serif;
 }
 
 .reviewbutton{
@@ -252,6 +253,7 @@ input{
 
 .reviewtitle{
   text-align: center;
+  font-family: "Hanuman", serif;
 }
 
 .reviewpost{
@@ -281,11 +283,15 @@ input{
   font-weight: bold;
   text-decoration: none;
   color: black;
+  font-family: "Kalam", serif;
+  font-style: normal;
 }
 
 .title{
   font-size: 25px;
   font-weight: bold;
+  font-family: "Kalam", serif;
+  font-style: normal;
 }
 
 .postinfo{
@@ -295,7 +301,7 @@ input{
 .body{
   font-size: 20px;
   background-color: rgb(155, 155, 155);
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "Hanuman", serif;
   border:solid 8px;
   border-color:rgb(155, 155, 155);
   border-radius: 5px;

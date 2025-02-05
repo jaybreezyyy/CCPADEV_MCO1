@@ -172,6 +172,8 @@ input {
 .title {
   text-align: center;
   font-size: 45px;
+  font-family: "Kalam", serif;
+  font-style: normal;
 }
 
 .inputs {
@@ -186,6 +188,7 @@ input {
 }
 .username {
   font-size: 30px;
+  font-family: "Hanuman", serif;
 }
 
 .userinput {
@@ -200,6 +203,7 @@ input {
 
 .password {
   font-size: 30px;
+  font-family: "Hanuman", serif;
 }
 
 .passinput {
