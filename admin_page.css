@@ -171,7 +171,6 @@ input{
   height: auto;
   justify-content: center;
   align-items: center;
-  font-family: "Hanuman", serif;
 }
 
 .profile{
@@ -191,7 +190,7 @@ input{
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
-  background-image: url("reviewer2.jpg");
+  background-image: url("profile.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -204,52 +203,56 @@ input{
   margin-left: 50px;
 }
 
+
 .username{
   font-size: 25px;
+  font-family: "Hanuman", serif;
 }
 
 .description{
   font-size: 25px;
+  font-family: "Hanuman", serif;
 }
 
-.review{
+.establishments{
   display:flex;
   flex-direction: column;
   margin-top: 50px;
   width: 60%;
+  font-family: "Hanuman", serif;
 }
 
-.reviewtitle{
+.esttitle{
   text-align: center;
   font-size: 45px;
 }
 
-.establishmentname{
+.estlist{
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+.est1_name{
   font-size: 25px;
   font-weight: bold;
-  text-decoration: none;
   color: black;
 }
 
-.title{
-  font-size: 25px;
-  font-weight: bold;
-  color: black;
+.estlist{
+  display:flex;
+  flex-direction: column;
 }
 
-.rating{
-  font-size: 25px;
-  color:rgb(12, 170, 68)
-}
-
-.body{
-  font-size: 20px;
-  background-color: rgb(155, 155, 155);
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  border:solid 8px;
-  border-color:rgb(155, 155, 155);
+.est1_photo{
+  width: 100%;
+  height: 600px;
+  background-image: url("24chicken2.jpg");
   border-radius: 5px;
 }
+
+
 
 .footer{
   width:100%;
@@ -301,4 +304,64 @@ input{
 
 .copyright_text{
   font-size: 8px;
+}
+
+
+.options{
+  margin-top: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.editbutton{
+    text-align: left;
+}
+
+
+.buttondesign{
+  font-size: 30px;
+  font-family: Helvetica;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(0, 80, 28);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  padding-left: 20;
+  padding-right: 20;
+  font-weight: bold;
+}
+
+.deletebuttondesign{
+  font-size: 30px;
+  font-family: Helvetica;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  padding-left: 20;
+  padding-right: 20;
+  font-weight: bold;
+}
+
+
+
+
+.est_buttons{
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: center;
+  gap: 20px;
+
 }

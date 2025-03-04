@@ -205,10 +205,12 @@ input{
 
 .username{
   font-size: 25px;
+  font-family: "Hanuman", serif;
 }
 
 .description{
   font-size: 25px;
+  font-family: "Hanuman", serif;
 }
 
 .review{
@@ -216,6 +218,7 @@ input{
   flex-direction: column;
   margin-top: 50px;
   width: 60%;
+  font-family: "Hanuman", serif;
 }
 
 .reviewtitle{

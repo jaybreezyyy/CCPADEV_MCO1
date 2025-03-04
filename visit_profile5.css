@@ -171,6 +171,7 @@ input{
   height: auto;
   justify-content: center;
   align-items: center;
+  font-family: "Hanuman", serif;
 }
 
 .profile{
@@ -238,7 +239,7 @@ input{
 
 .rating{
   font-size: 25px;
-  color:rgb(12, 170, 68)
+  color:rgb(12, 170, 68);
 }
 
 .body{

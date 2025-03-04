@@ -1,5 +1,3 @@
-/*header*/
-
 .page {
   display: flex;
   height: auto;
@@ -108,6 +106,19 @@ input {
   margin-left: 20px;
 }
 
+.content {
+  background-color: rgb(64, 180, 105);
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0;
+  align-items: center;
+  justify-content: center;
+  font-family: Helvetica;
+  
+}
+
 .login_button {
   font-size: 15px;
   font-family: Helvetica;
@@ -161,116 +172,147 @@ input {
   padding-right: 20;
 }
 
-/* content */
-
-.body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-}
-.campus_facade {
-  display: flex;
-  flex-direction: row;
-  width: 60%;
-  height: auto;
-  justify-content: center;
-  align-items: center;
+.review-box {
+  width: 80%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-top: 100px;
 }
 
-.slogan {
-  font-family: "Gelasio", serif;
-  text-align: left;
-  margin: 0;
-  font-size: 63px;
-  margin-right: 50px;
+.edit-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.slogan_text {
-  display: inline-block;
-  width: 50%;
-  margin-left: 20px;
-}
-
-.campus_image {
-  height: 260px;
-  margin: 0;
-  margin-right: 20px;
-  width: auto;
-}
-
-.middle_text {
-  width: 100%;
-  font-family: "Kalam", serif;
-  font-weight: 400;
-  font-style: normal;
+.title {
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
+  font-family: "Kalam", serif;
+  font-style: normal;
 }
 
-.local-flavors-section{
-    display:flex;
-    flex-direction: column;
-    margin-bottom: 10%;
+.review {
+  color: #225b24;
 }
 
-.reviews {
-  width: 100%;
-  font-family: "Hanuman", serif;
-  overflow: hidden;
+.inputs {
   display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.review1, .review2, .review3, .review4, .review5 {
-  display: inline-block;
-  height: 100%;
-  width: 50%;
-  margin: 0;
-  padding-left: 20px;
+.titleblock {
+  margin-bottom: 30px;
+  margin-left: 200px;
+}
+.titletext {
+  font-size: 30px;
+  font-family: "Hanuman", serif;
 }
 
-/*.review1 p {
-  margin: 0;
-}*/
-
-.review1_image,
-.review2_image,
-.review3_image,
-.review4_image,
-.review5_image {
-  height: 140px;
+.userinput {
+  width: 80%;
+  height: 50px;
 }
 
-/*.review2 {
-  display: inline-block;
-  height: 100%;
-  width: 50%;
-  margin: 0;
-  padding-left: 40px;
-}*/
-
-.stars {
-  color: rgb(12, 170, 68);
-  margin: 0;
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
 }
 
-/*.review1_name {
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 50px; /* Increased star size */
+  color: gray;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: green; /* Change color on hover/select */
+}
+
+.saveanddelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 5%;
+}
+.editbutton {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.buttondesign {
+  font-size: 30px;
+  font-family: Helvetica;
+  margin-right: 3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(0, 80, 28);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
   height: auto;
-  width: auto;
-  margin: 100px;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+  font-weight: bold;
 }
 
-.review2_name {
-  margin: 0;
-}*/
+.deletebutton {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.deletebuttondesign {
+  font-size: 30px;
+  font-family: Helvetica;
+  margin-right: 3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+  font-weight: bold;
+}
 
 .footer {
   width: 100%;
   height: 90px;
   display: flex;
-  font-family: "Hanuman", serif;
+  border: solid 15px;
+  border-color: #4d564f;
+  
 }
 
 .contact_information {
