@@ -41,20 +41,20 @@
           <div class="edit-title">
             <h1>Sign up now to Animo <span class="eats">EATS</span></h1>
           </div>
-          <form class="input-area">
-            <label for="new-name">Username:</label>
-            <input type="text" id="new-name" name="new-name" /> <br />
-            <label for="new-pass">Password:</label>
-            <input type="password" id="new-pass" name="new-pass" /> <br />
-            <label for="avatar-upload">Avatar:</label>
-            <input type="file" id="avatar-upload" accept="image/*" /> <br />
-            <label for="short-desc">Short Description:</label>
-            <textarea id="short-desc" name="short-desc"></textarea> <br />
-            <div class="buttons">
-              <a href="/view_profile">
-                <input type="button" id="signup-button" value="Sign up" />
-              </a>
-            </div>
+          <form action="/signup" method="post" enctype="multipart/form-data" class="input-area">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required /> <br />
+
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required /> <br />
+
+              <label for="avatar">Avatar:</label>
+              <input type="file" id="avatar-upload" accept="image/*" name="avatar"/> <br />
+
+              <label for="short_description">Short Description:</label>
+              <textarea id="short-desc"name="short_description" ></textarea> <br />
+
+              <button type="submit" id="signup-button">Sign Up</button>
           </form>
         </div>
 

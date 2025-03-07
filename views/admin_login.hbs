@@ -35,60 +35,20 @@
       </div>
 
       <div class="content">
-        <div class="title"><h1>Login to Animo <span class="green">Eats</span> <br> as <span class="green">Admin</span></h1></div>
-       <!--      -->
-        <div class="inputs">
-          <div id="error"></div>
-          <form id="login-form" action="/admin_page" method="GET">
-            <div class="usernameblock">
-              <div class="username" >username:</div>
-              <div class="usernameinput">
-                <input type="text" id="username" class="userinput" placeholder="Enter Username" >
-              </div>
-            </div>  
-            <div class="passwordblock">
-              <div class="password" >password:</div>
-              <div class="passwordinput">
-                  <input type="text" class="passinput" id="password" placeholder="Enter Password" >
-              </div>
-            </div>
-            <div class="divlogbutton">
-              <button type="submit" class="loginbutton">Log In</button>
+        <div class="edit-title">
+            <h1>Login now to Animo <span class="eats">EATS</span> as Admin</h1>
+          </div>
+        <form action = "/login_admin" method="post" class="input-area">
+            <label for="new-name">Username:</label>
+            <input type="text" id="new-name" name="new-name" /> <br />
+            <label for="new-pass">Password:</label>
+            <input type="password" id="new-pass" name="new-pass" /> <br/>
+            <div class="buttons">
+              <a href="/view_profile">
+                <input type="" id="signup-button" value="Log In as Admin" />
+              </a>
             </div>
           </form>
-        </div>
-       <!--      -->
-        <!-- 
-       <div class="inputs">
-          <div class="usernameblock">
-            <div class="username">username:</div>
-          <div class="usernameinput">
-            <form>
-              <input type="text" class="userinput" placeholder="Enter Username">
-            </form>
-          </div>
-        </div>
-
-          <div class="passwordblock">
-            <div class="password">password:</div>
-            <div class="passwordinput">
-              <form>
-                <input type="text" class="passinput" placeholder="Enter Password">
-              </form>
-            </div>
-
-
-          </div>
-
-        <div class="divlogbutton">
-            <a href="/admin_page" class="loginbutton">
-              Log In
-            </a>
-          
-        </div>
-
-        </div> 
-        -->
 
 
       </div>

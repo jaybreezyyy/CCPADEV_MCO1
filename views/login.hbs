@@ -34,36 +34,20 @@
       </div>
 
       <div class="content">
-        <div class="title"><h1>Login to Animo <span class="green">Eats</span></h1></div>
-        <div class="inputs">
-          <div class="usernameblock">
-            <div class="username">username:</div>
-            <div class="usernameinput">
-              <form>
-                <input type="text" class="userinput" placeholder="Enter Username">
-              </form>
-            </div>
+        <div class="edit-title">
+            <h1>Login now to Animo <span class="eats">EATS</span></h1>
           </div>
-
-          <div class="passwordblock">
-            <div class="password">password:</div>
-            <div class="passwordinput">
-              <form>
-                <input type="text" class="passinput" placeholder="Enter Password">
-              </form>
+        <form action = "/login_user" method="post" class="input-area">
+            <label for="new-name">Username:</label>
+            <input type="text" id="new-name" name="new-name" /> <br />
+            <label for="new-pass">Password:</label>
+            <input type="password" id="new-pass" name="new-pass" /> <br/>
+            <div class="buttons">
+              <a href="/view_profile">
+                <input type="" id="signup-button" value="Log In as User" />
+              </a>
             </div>
-
-
-          </div>
-
-        <div class="divlogbutton">
-            <a href="/view_profile" class="loginbutton">
-              Log In
-            </a>
-          
-        </div>
-
-        </div>
+          </form>
 
 
       </div>
