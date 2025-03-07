@@ -315,3 +315,43 @@ input {
 .copyright_text {
   font-size: 8px;
 }
+
+.restogallery{
+  width: 900px;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.restogallery div{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+  padding: 10px;
+  flex: none;
+}
+
+.restogallery div img{
+  width: 100%;
+  transform: scale(100%);
+  transition: transform 0.5s;
+}
+
+.gallery-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10% auto;
+}
+
+#leftArrow, #rightArrow{
+  width: 50px;
+  cursor: pointer;
+  margin: 40px;
+}
+
+.restogallery div img:hover {
+  filter: grayscale(0);
+  cursor: pointer;
+  transform: scale(1.1);
+}
