@@ -50,7 +50,7 @@ app.set("view engine", "hbs")
 //user schema
 const usersSchema = new mongoose.Schema({
   username: { type: String, required: true },
-  password: { type: String, required: true }, // Stored as plain text
+  password: { type: String, required: true }, 
   avatar: { type: String, default: "default.png" },
   short_description: String
 });
@@ -90,6 +90,28 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.post("/login", async (req, res) => {
+  try {
+    const { name, password } = req.body;
+
+    const check = await User.findOne({ username: name });
+
+    if (!check) {
+      return res.send("<script>alert('User not found. Please sign up.'); window.location='/login';</script>");
+    }
+
+    if (check.password === password) {
+      res.redirect("/view_profile");
+    } else {
+      res.send("<script>alert('Wrong password. Try again.'); window.location='/login';</script>");
+    }
+  } catch (error) {
+    console.error("Login Error:", error);
+    res.send("<script>alert('Error Logging in. Please try again.'); window.location='/login';</script>");
+  }
+});
+
+
 app.get("/signup", (req, res) => {
   res.render("signup");
 });
@@ -99,18 +121,19 @@ app.post("/signup", upload.single("avatar"), async (req, res) => {
       const { username, password, short_description } = req.body;
       const avatar = req.file ? req.file.filename : "default.png";
 
-      const newUser = new User({ 
-          username, 
-          password, 
-          avatar, 
-          short_description 
-      });
+      // check if the username is already taken
+      const existingUser = await User.findOne({ username });
+      if (existingUser) {
+          return res.send("<script>alert('Username already exists. Please choose another one.'); window.location='/signup';</script>");
+      }
 
+      // If unique, save user
+      const newUser = new User({ username, password, avatar, short_description });
       await newUser.save();
-      res.redirect("/"); 
+      res.redirect("/login");
   } catch (error) {
       console.error("Signup Error:", error);
-      res.send("Error signing up.");
+      res.send("<script>alert('Error signing up. Please try again.'); window.location='/signup';</script>");
   }
 });
 
