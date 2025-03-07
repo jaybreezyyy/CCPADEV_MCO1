@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true })); // Handle form data
 
 app.use(express.json())
 
-// Configure Multer for Image Uploads
+// configure Multer for Image Uploads
 const storage = multer.diskStorage({
   destination: "public/uploads/",
   filename: (req, file, cb) => {
@@ -75,7 +75,7 @@ app.get("/edit_establishment", (req, res) => {
 });
 
 app.get("/edit_profile", (req, res) => {
-  res.render("edit_establishment");
+  res.render("edit_profile");
 });
 
 app.get("/edit_review", (req, res) => {
