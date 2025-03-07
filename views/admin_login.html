@@ -6,6 +6,7 @@
   <title>Animo Eats</title>
   <link rel="stylesheet" href="/css/login.css">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Hanuman:wght@100;300;400;700;900&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+  <script defer src="/js/login.js"></script>
 </head>
 <body>
   <div class="page">
@@ -35,15 +36,38 @@
 
       <div class="content">
         <div class="title"><h1>Login to Animo <span class="green">Eats</span> <br> as <span class="green">Admin</span></h1></div>
+       <!--      -->
         <div class="inputs">
+          <div id="error"></div>
+          <form id="login-form" action="/admin_page" method="GET">
+            <div class="usernameblock">
+              <div class="username" >username:</div>
+              <div class="usernameinput">
+                <input type="text" id="username" class="userinput" placeholder="Enter Username" >
+              </div>
+            </div>  
+            <div class="passwordblock">
+              <div class="password" >password:</div>
+              <div class="passwordinput">
+                  <input type="text" class="passinput" id="password" placeholder="Enter Password" >
+              </div>
+            </div>
+            <div class="divlogbutton">
+              <button type="submit" class="loginbutton">Log In</button>
+            </div>
+          </form>
+        </div>
+       <!--      -->
+        <!-- 
+       <div class="inputs">
           <div class="usernameblock">
             <div class="username">username:</div>
-            <div class="usernameinput">
-              <form>
-                <input type="text" class="userinput" placeholder="Enter Username">
-              </form>
-            </div>
+          <div class="usernameinput">
+            <form>
+              <input type="text" class="userinput" placeholder="Enter Username">
+            </form>
           </div>
+        </div>
 
           <div class="passwordblock">
             <div class="password">password:</div>
@@ -63,7 +87,8 @@
           
         </div>
 
-        </div>
+        </div> 
+        -->
 
 
       </div>

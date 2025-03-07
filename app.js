@@ -78,6 +78,10 @@ app.get("/admin_login", (req, res) => {
   res.sendFile("./views/admin_login.html", { root: __dirname });
 });
 
+app.get("/admin_page", (req, res) => {
+    res.sendFile("./views/admin_page.html", { root: __dirname });
+  });
+
 //404 page
 app.use((req, res) => {
   res.status(404).send("404: Page Not Found");
