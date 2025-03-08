@@ -35,22 +35,27 @@
 
         <div class="content">
           <div class="profile">
-            <div class="profilepicture"></div>
-            <div class="info">
-              <div class="username"><h1>GROUP 9</h1></div>
-              <div class="description">
-                group_9 of CCAPDEV:
-                <ul>
-                  <li>Joshua Amores</li>
-                  <li>Andreo Canilao</li>
-                  <li>Kole Chan</li>
-                  <li>Henzley Young</li>
-                </ul>
+              <div >
+                <img class="profilepicture" src="/uploads/{{user.avatar}}" alt="User Avatar">
               </div>
-              <div class="editbutton">
-                <a href="/edit_profile" class="buttondesign">
-                  Edit Profile
-                </a>
+
+
+            <div class="info">
+              <div class="username"><h1>{{user.username}}</h1></div>
+              <div class="description">
+                  <p>{{user.short_description}}</p>
+                
+              </div>
+              <div class="options">
+                <div class="editbutton">
+                  <a href="/edit_profile" class="buttondesign">
+                    Edit Profile
+                  </a>
+                </div>
+
+                <div class="editbutton">
+                  <a href="/logout" class="buttondesign">Logout</a>
+                </div>
               </div>
             </div>
           </div>

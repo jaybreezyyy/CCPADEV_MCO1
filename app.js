@@ -1,22 +1,34 @@
+require("dotenv").config();
 const express = require("express");
 const hbs = require("hbs");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
+const session = require("express-session");
+
 
 //mongodb+srv://joseandreocanilao:<db_password>@cluster0.3lzzu.mongodb.net/
-atlas_pw = 1234
+atlas_pw = 1234;
+secret_key = "1234";
 const atlas = "mongodb+srv://joseandreocanilao:" + atlas_pw + "@cluster0.3lzzu.mongodb.net/users";
 
 //express app
 const app = express();
-app.use(express.json()); // Handle JSON data
-app.use(express.urlencoded({ extended: true })); // Handle form data
-
+app.use(express.json()); // handle JSON data
+app.use(express.urlencoded({ extended: true })); // handle form data
 app.use(express.json())
+app.use(
+  session({
+    secret: secret_key, // Change this to a secure secret
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-// configure Multer for Image Uploads
+
+
+// configure multer for Image Uploads
 const storage = multer.diskStorage({
   destination: "public/uploads/",
   filename: (req, file, cb) => {
@@ -75,8 +87,67 @@ app.get("/edit_establishment", (req, res) => {
 });
 
 app.get("/edit_profile", (req, res) => {
-  res.render("edit_profile");
+  if (!req.session.user) {
+    return res.redirect("/login"); // redirect if not logged in
+  }
+
+  res.render("edit_profile", { user: req.session.user });
 });
+
+
+app.post("/edit_profile", upload.single("avatar"), async (req, res) => {
+  try {
+    if (!req.session.user) {
+      return res.redirect("/login"); // redirect if not logged in
+    }
+
+    const { new_name, new_pass, short_desc } = req.body;
+    const avatar = req.file ? req.file.filename : req.session.user.avatar; // keep old avatar if no new one
+
+    // update user in the database
+    await User.updateOne(
+      { username: req.session.user.username }, 
+      { 
+        username: new_name || req.session.user.username,
+        password: new_pass || req.session.user.password,
+        avatar: avatar,
+        short_description: short_desc || req.session.user.short_description
+      }
+    );
+
+    // update session with new details
+    req.session.user = {
+      username: new_name || req.session.user.username,
+      avatar: avatar,
+      short_description: short_desc || req.session.user.short_description
+    };
+
+    res.redirect("/view_profile"); // redirect to updated profile
+  } catch (error) {
+    console.error("Profile Update Error:", error);
+    res.send("<script>alert('Error updating profile. Try again.'); window.location='/edit_profile';</script>");
+  }
+});
+
+app.post("/delete_profile", async (req, res) => {
+  try {
+    if (!req.session.user) {
+      return res.redirect("/login"); // Ensure user is logged in
+    }
+
+    // delete user from the database
+    await User.deleteOne({ username: req.session.user.username });
+
+    // destroy session
+    req.session.destroy(() => {
+      res.redirect("/signup"); // Redirect to signup page after deletion
+    });
+  } catch (error) {
+    console.error("Delete Profile Error:", error);
+    res.send("<script>alert('Error deleting profile. Try again.'); window.location='/edit_profile';</script>");
+  }
+});
+
 
 app.get("/edit_review", (req, res) => {
   res.render("edit_review");
@@ -93,7 +164,6 @@ app.get("/login", (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { name, password } = req.body;
-
     const check = await User.findOne({ username: name });
 
     if (!check) {
@@ -101,6 +171,12 @@ app.post("/login", async (req, res) => {
     }
 
     if (check.password === password) {
+      req.session.user = {
+        username: check.username,
+        avatar: check.avatar,
+        short_description: check.short_description,
+      };
+
       res.redirect("/view_profile");
     } else {
       res.send("<script>alert('Wrong password. Try again.'); window.location='/login';</script>");
@@ -111,6 +187,11 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/login");
+  });
+});
 
 app.get("/signup", (req, res) => {
   res.render("signup");
@@ -127,7 +208,7 @@ app.post("/signup", upload.single("avatar"), async (req, res) => {
           return res.send("<script>alert('Username already exists. Please choose another one.'); window.location='/signup';</script>");
       }
 
-      // If unique, save user
+      // if unique, save user
       const newUser = new User({ username, password, avatar, short_description });
       await newUser.save();
       res.redirect("/login");
@@ -142,8 +223,13 @@ app.get("/view_establishment", (req, res) => {
 });
 
 app.get("/view_profile", (req, res) => {
-  res.render("view_profile");
+  if (!req.session.user) {
+    return res.redirect("/login"); // Redirect if not logged in
+  }
+  
+  res.render("view_profile", { user: req.session.user });
 });
+
 
 app.get("/visit_profile", (req, res) => {
   res.render("visit_profile");
