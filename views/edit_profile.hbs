@@ -41,24 +41,26 @@
             <div class="edit-title">
                 <h1>Edit Profile</h1>
             </div>
-            <form class="input-area">
-                <label for="new-name">New Username:</label> 
-                <input type="text" id="new-name" name="new-name"> <br> 
-                <label for="new-pass">New Password:</label> 
-                <input type="password" id="new-pass" name="new-pass"> <br> 
-                <label for="avatar-upload">Avatar:</label> 
-                <input type="file" id="avatar-upload" accept="image/*">  <br> 
-                <label for="short-desc">Short Description:</label> 
-                <textarea id="short-desc" name="short-desc"></textarea> <br> 
-                <div class="buttons">
-                    <a href="/view_profile">
-                        <input type="button" id="save-button" value="Save Changes">
-                    </a>
-                    <a href="/main_page">
-                        <input type="button" id="delete-button" value="Delete Account">
-                    </a>
-                </div>
+            <form class="input-area" action="/edit_profile" method="POST" enctype="multipart/form-data">
+              <label for="new-name">New Username:</label> 
+              <input type="text" id="new-name" name="new_name" value="{{user.username}}"> <br> 
+
+              <label for="new-pass">New Password:</label> 
+              <input type="password" id="new-pass" name="new_pass" placeholder="Enter new password"> <br> 
+
+              <label for="avatar-upload">Avatar:</label> 
+              <input type="file" id="avatar-upload" name="avatar" accept="image/*"> <br> 
+
+              <label for="short-desc">Short Description:</label> 
+              <textarea id="short-desc" name="short_desc">{{user.short_description}}</textarea> <br> 
+
+              <div class="buttons">
+                  <input type="submit" id="save-button" value="Save Changes">
+                  <input type="button" id="delete-button" value="Delete Account" onclick="deleteProfile()">
+
+              </div>
             </form>
+
         </div>
 
         <div class="footer">
@@ -86,5 +88,24 @@
       </div>
     </div>
 
+
+    <script>
+    function deleteProfile() {
+      if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+        fetch("/delete_profile", { method: "POST" })
+          .then(response => {
+            if (response.redirected) {
+              window.location.href = response.url; // Redirect after deletion
+            } else {
+              alert("Error deleting profile. Please try again.");
+            }
+          })
+          .catch(error => {
+            console.error("Delete Profile Error:", error);
+            alert("Error deleting profile. Please try again.");
+          });
+      }
+    }
+  </script>
   </body>
 </html>
