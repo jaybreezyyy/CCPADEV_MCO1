@@ -72,9 +72,10 @@
           <div class="establishments">
             <div class="esttitle"><h1>Establishment List</h1></div>
               <div class="estlist">
-                <div class="est1">
-                  <div class="est1_name">24 Chicken</div>
-                  <div class="est1_photo"></div>
+                {{#each establishmentsList}}
+                <div class="est">
+                  <div class="est_name">{{this.name}}</div>
+                  <img src="{{this.mainImage}}" class="est_photo"></img>
                   <div class="est_buttons">
                     <div class="editbutton " >
                       <a href="/edit_establishment" class="buttondesign" >
@@ -90,6 +91,7 @@
                     
                   </div>
                 </div>
+                {{/each}}
 
               </div>
 

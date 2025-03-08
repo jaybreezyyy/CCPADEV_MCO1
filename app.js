@@ -71,8 +71,9 @@ const Admin = mongoose.model("Admin", adminSchema);
 
 const restoSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    rating: { type: String, required: true},
-    image: { type: String, required: true },
+    rating: { type: String},
+    storeImage: { type: String, required: true },
+    mainImage: { type: String, required: true },
     description: { type: String, required: true},
   });
 const Resto = mongoose.model("Resto", restoSchema); 
@@ -87,6 +88,27 @@ app.get("/", async (req, res) => {
 
 app.get("/add_establishment", (req, res) => {
   res.render("add_establishment");
+});
+
+app.post("/post",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'mainImage', maxCount: 1}]), async(req, res)=>{
+  try{
+    const { name, description } = req.body;
+    const storeImage = '/uploads/' + req.files.storeImage[0].filename;
+    const mainImage = '/uploads/' + req.files.mainImage[0].filename;
+
+    const resto = new Resto({
+      name,
+      storeImage,
+      mainImage,
+      description
+    });
+    await resto.save();
+    console.log(resto);
+    res.send("Establishment successfully added!");
+  }catch(error){
+    console.error("Error adding establishment:", error);
+    res.send("Error adding establishment.");
+  }
 });
 
 app.get("/edit_establishment", (req, res) => {
@@ -276,11 +298,14 @@ app.post("/admin_login", async (req, res) => {
 });
 
 
-app.get("/admin_page", (req, res) => {
+app.get("/admin_page", async (req, res) => {
   if (!req.session.admin) {
     return res.redirect("/admin_login"); // redirect if not logged in
   }
-  res.render("admin_page", { admin: req.session.admin });
+  const establishments = await Resto.find({});
+  res.render("admin_page", {
+    establishmentsList: establishments, admin: req.session.admin
+  });
 });
 
 app.get("/admin_logout", (req, res) => {

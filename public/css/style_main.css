@@ -359,7 +359,7 @@ input {
   margin: 40px;
 }
 
-.restogallery div img:hover {
+.restogallery img:hover {
   filter: grayscale(0);
   cursor: pointer;
   transform: scale(1.1);

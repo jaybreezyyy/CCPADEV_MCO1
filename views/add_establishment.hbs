@@ -35,22 +35,24 @@
               View Profile
             </a>
           </div>
-
+</div>
 
         <div class="content">
           <div class="edit-title">
             <h1>Add New <span class="eats">Establishment</span></h1>
           </div>
-          <form class="input-area">
-            <label for="new-name">Establishment Name:</label>
-            <input type="text" id="new-name" name="new-name" /> <br />
-            <label for="avatar-upload">Avatar:</label>
-            <input type="file" id="avatar-upload" accept="image/*" /> <br />
-            <label for="short-desc">Short Description:</label>
-            <textarea id="short-desc" name="short-desc"></textarea> <br />
+          <form action="/post" class="input-area" method="POST" enctype="multipart/form-data">
+            <label for="name">Establishment Name:</label>
+            <input type="text" id="name" name="name" required /> <br />
+            <label for="storefront-upload">Storefront:</label>
+            <input type="file" id="storeImage" name="storeImage" accept="image/*" required/> <br />
+            <label for="mainImage">Main Image:</label>
+            <input type="file" id="mainImage" name="mainImage" accept="image/*" required/> <br />
+            <label for="description">Short Description:</label>
+            <textarea id="description" name="description" required></textarea> <br />
             <div class="buttons">
-              <a href="/admin_page">
-                <input type="button" id="signup-button" value="Add Establishment" />
+              <!-- <a href="/admin_page"> -->
+                <button type="submit" id="signup-button">Add Establishment</button>
               </a>
             </div>
           </form>

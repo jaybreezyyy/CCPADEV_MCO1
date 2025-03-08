@@ -51,14 +51,13 @@
             <div class="gallery-container">
               <img src="images/arrow_left.png" id ="leftArrow">
               <div class="restogallery">
-                <!-- <div> -->
                   {{#each restosList}}
                   
                     <span>
                       <div class="review_name">{{this.name}}</div>
                       <p class="stars">{{this.rating}}</p>
                       <a href="view_{{this.name}}.html"> <!-- ?? -->
-                        <img src="{{this.image}}" />
+                        <img src="{{this.storeImage}}" />
                       </a>
                       <p class="review_desc">
                         {{this.description}}
@@ -66,46 +65,7 @@
                     </span>
                     
                   {{/each}}
-                 <!--  <span>
-                    <div class="review2_name">Dixie's</div>
-                    <p class="stars">★</p>
-                    <a href="view_dixies.html">
-                      <img src="/images/dixies_storefront.jpg" />
-                    </a>
-                    <p class="review2_desc">
-                      Fried Chicken shop on the side of the road.
-                    </p>
-                  </span>
-                  <span>
-                    <div class="review3_name">Ate Rica's Bacsilog</div>
-                    <p class="stars">★★★★</p>
-                    <a href="view_bacsilog.html">
-                      <img src="/images/ricas_storefront.jpg" />
-                    </a>
-                    <p class="review3_desc">
-                      Serving tasty, quality, fast, and clean superior-silog meals
-                      in schools, commercial spaces, and supermarkets.
-                    </p>
-                  </span>
-                </div>
-                <div>
-                  <span>
-                    <div class="review4_name">Tagpuan Berde</div>
-                    <p class="stars">★★★</p>
-                    <a href="view_tagpuan.html">
-                      <img src="/images/tagpuan_storefront.jpg" />
-                    </a>
-                    <p class="review4_desc">Your humble local eatery 💚</p>
-                  </span>
-                  <span>
-                    <div class="review5_name">Zark's Burgers</div>
-                    <p class="stars">★★★★</p>
-                    <a href="view_zarks.html">
-                      <img src="/images/zarks_storefront.jpg" />
-                    </a>
-                    <p class="review5_desc">IT'S FRESH. IT'S HUGE. IT'S GREAT.</p>
-                  </span>
-                </div> -->
+                 
               </div>
               <img src="images/arrow_right.png" id ="rightArrow">
             </div>
