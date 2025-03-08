@@ -216,7 +216,7 @@ input {
     margin-bottom: 10%;
 }
 
-.reviews {
+.restogallery {
   width: 100%;
   font-family: "Hanuman", serif;
   overflow: hidden;
@@ -332,7 +332,8 @@ input {
 }
 
 .restogallery div img{
-  width: 100%;
+  height: 200px;
+  width: auto;
   transform: scale(100%);
   transition: transform 0.5s;
 }
@@ -341,7 +342,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10% auto;
+  margin: auto;
 }
 
 #leftArrow, #rightArrow{
