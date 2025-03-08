@@ -26,8 +26,6 @@ app.use(
   })
 );
 
-
-
 // configure multer for Image Uploads
 const storage = multer.diskStorage({
   destination: "public/uploads/",
@@ -53,9 +51,6 @@ mongoose.connect(atlas)
   console.log("connection failed");
 })
 
-
-
-
 app.set("view engine", "hbs")
 
 
@@ -68,6 +63,13 @@ const usersSchema = new mongoose.Schema({
 });
 const User = mongoose.model("User", usersSchema);
 
+const adminSchema = new mongoose.Schema({
+  username: { type: String, required: true},
+  password: { type:String, required: true}
+});
+const Admin = mongoose.model("Admin", adminSchema);
+
+
 
 //routing
 app.get("/", (req, res) => {
@@ -76,10 +78,6 @@ app.get("/", (req, res) => {
 
 app.get("/add_establishment", (req, res) => {
   res.render("add_establishment");
-});
-
-app.get("/admin_page", (req, res) => {
-  res.render("admin_page");
 });
 
 app.get("/edit_establishment", (req, res) => {
@@ -243,9 +241,44 @@ app.get("/admin_login", (req, res) => {
   res.render("admin_login");
 });
 
+app.post("/admin_login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    console.log("Attempting login for:", username); // Debugging line
+
+    const admin = await Admin.findOne({ username: username });
+    console.log("Admin Found:", admin); // Debugging line
+
+    if (!admin) {
+      return res.send("<script>alert('Admin not found. Please check your username.'); window.location='/admin_login';</script>");
+    }
+
+    if (admin.password === password) {
+      req.session.admin = { username: admin.username }; // store admin session
+      console.log("Login Successful!"); // Debugging line
+      return res.redirect("/admin_page");
+    } else {
+      return res.send("<script>alert('Wrong password. Try again.'); window.location='/admin_login';</script>");
+    }
+  } catch (error) {
+    console.error("Admin Login Error:", error);
+    res.send("<script>alert('Error logging in as admin. Try again.'); window.location='/admin_login';</script>");
+  }
+});
+
+
 app.get("/admin_page", (req, res) => {
-  res.render("admin_page");
+  if (!req.session.admin) {
+    return res.redirect("/admin_login"); // redirect if not logged in
+  }
+  res.render("admin_page", { admin: req.session.admin });
+});
+
+app.get("/admin_logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/admin_login");
   });
+});
 
 //404 page
 app.use((req, res) => {

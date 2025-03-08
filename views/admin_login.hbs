@@ -38,18 +38,17 @@
         <div class="edit-title">
             <h1>Login now to Animo <span class="eats">EATS</span> as Admin</h1>
           </div>
-        <form action = "/login_admin" method="post" class="input-area">
+        <form action="/admin_login" method="POST" class="input-area">
             <label for="new-name">Username:</label>
-            <input type="text" id="new-name" name="new-name" /> <br />
-            <label for="new-pass">Password:</label>
-            <input type="password" id="new-pass" name="new-pass" /> <br/>
-            <div class="buttons">
-              <a href="/admin_page">
-                <input type="" id="signup-button" value="Log In as Admin" />
-              </a>
-            </div>
-          </form>
+            <input type="text" id="new-name" name="username" required> <br />
 
+            <label for="new-pass">Password:</label>
+            <input type="password" id="new-pass" name="password" required> <br />
+
+            <div class="buttons">
+                <input type="submit" id="signup-button" value="Log In as Admin">
+            </div>
+        </form>
 
       </div>
       

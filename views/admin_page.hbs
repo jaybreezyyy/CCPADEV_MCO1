@@ -39,23 +39,27 @@
               <img class="profilepicture" src="/images/profile.jpg" alt="User Avatar">
             </div>
             <div class="info">
-              <div class="username"><h1>ADMIN</h1></div>
+              <div class="username"><h1>Welcome, {{admin.username}}</h1></div>
               <div class="description">
                 
                 </ul>
               </div>
 
               <div class="options">
-                <div class="editbutton">
+                {{!-- <div class="editbutton">
                   <a href="/edit_profile" class="buttondesign">
                     Edit Profile
                   </a>
-                </div>
+                </div> --}}
 
                 <div class="addbutton">
                   <a href="/add_establishment" class="buttondesign">
                     Add Establishment
                   </a>
+                </div>
+
+                <div class="addbutton">
+                  <a href="/admin_logout" class="buttondesign">Logout</a>
                 </div>
 
                 
