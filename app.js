@@ -54,7 +54,7 @@ mongoose.connect(atlas)
 app.set("view engine", "hbs")
 
 
-//user schema
+//user schema - move to models folder
 const usersSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true }, 
@@ -69,11 +69,20 @@ const adminSchema = new mongoose.Schema({
 });
 const Admin = mongoose.model("Admin", adminSchema);
 
+const restoSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    rating: { type: String, required: true},
+    image: { type: String, required: true },
+    description: { type: String, required: true},
+  });
+const Resto = mongoose.model("Resto", restoSchema); 
 
-
-//routing
-app.get("/", (req, res) => {
-  res.render("main_page")
+//routing - move to routes folder 
+app.get("/", async (req, res) => {
+  const restos = await Resto.find({});
+  res.render("main_page", {
+    restosList: restos
+  });
 });
 
 app.get("/add_establishment", (req, res) => {

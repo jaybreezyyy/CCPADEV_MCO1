@@ -320,6 +320,14 @@ input {
   width: 900px;
   display: flex;
   overflow-x: scroll;
+  gap: 20px; /* Add gap between images */
+  padding: 10px;
+}
+
+.restogallery span {
+  display: inline-block;
+  flex: none;
+  max-width: 300px;
 }
 
 .restogallery div{
@@ -331,7 +339,7 @@ input {
   flex: none;
 }
 
-.restogallery div img{
+.restogallery  img{
   height: 200px;
   width: auto;
   transform: scale(100%);
@@ -355,4 +363,9 @@ input {
   filter: grayscale(0);
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.review_name {
+  font-size: 20px;
+  font-weight: bold;
 }

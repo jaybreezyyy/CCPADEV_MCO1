@@ -34,6 +34,7 @@
           </div>
         </div>
         <div class="body">
+
           <div class="campus_facade">
             <div class="slogan_text">
               <p class="slogan">
@@ -50,19 +51,22 @@
             <div class="gallery-container">
               <img src="images/arrow_left.png" id ="leftArrow">
               <div class="restogallery">
-                <div>
-                  <span>
-                    <div class="review1_name">24Chicken</div>
-                    <p class="stars">★★★★★</p>
-                    <a href="view_24chicken.html">
-                      <img src="/images/24chicken_storefront.jpg" />
-                    </a>
-                    <p class="review1_desc">
-                      24Chicken, Serving happiness at a budget friendly price since
-                      2017.
-                    </p>
-                  </span>
-                  <span>
+                <!-- <div> -->
+                  {{#each restosList}}
+                  
+                    <span>
+                      <div class="review_name">{{this.name}}</div>
+                      <p class="stars">{{this.rating}}</p>
+                      <a href="view_{{this.name}}.html"> <!-- ?? -->
+                        <img src="{{this.image}}" />
+                      </a>
+                      <p class="review_desc">
+                        {{this.description}}
+                      </p>
+                    </span>
+                    
+                  {{/each}}
+                 <!--  <span>
                     <div class="review2_name">Dixie's</div>
                     <p class="stars">★</p>
                     <a href="view_dixies.html">
@@ -101,7 +105,7 @@
                     </a>
                     <p class="review5_desc">IT'S FRESH. IT'S HUGE. IT'S GREAT.</p>
                   </span>
-                </div>
+                </div> -->
               </div>
               <img src="images/arrow_right.png" id ="rightArrow">
             </div>
