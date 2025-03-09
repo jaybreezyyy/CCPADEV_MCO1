@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true })); // handle form data
 app.use(express.json())
 app.use(
   session({
-    secret: secret_key, // Change this to a secure secret
+    secret: secret_key, // change this to a secure secret
     resave: false,
     saveUninitialized: true,
   })
@@ -62,6 +62,7 @@ const usersSchema = new mongoose.Schema({
   short_description: String
 });
 const User = mongoose.model("User", usersSchema);
+
 
 const adminSchema = new mongoose.Schema({
   username: { type: String, required: true},
@@ -192,6 +193,11 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
+    // Prevent simultaneous login of both user and admin
+    if (req.session.admin) {
+      req.session.destroy(); // Log out admin before user login
+    }
+
     const { name, password } = req.body;
     const check = await User.findOne({ username: name });
 
@@ -252,11 +258,13 @@ app.get("/view_establishment", (req, res) => {
 });
 
 app.get("/view_profile", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect("/login"); // Redirect if not logged in
+  if (req.session.admin) {
+    return res.redirect("/admin_page"); // redirect to admin page if admin is logged in
+  } else if (req.session.user) {
+    return res.render("view_profile", { user: req.session.user, isAdmin: false });
+  } else {
+    return res.redirect("/login"); // redirect if no one is logged in
   }
-  
-  res.render("view_profile", { user: req.session.user });
 });
 
 
@@ -274,19 +282,24 @@ app.get("/admin_login", (req, res) => {
 
 app.post("/admin_login", async (req, res) => {
   try {
+    // prevent simultaneous login of both admin and user
+    if (req.session.user) {
+      req.session.destroy(); // log out user before admin login
+    }
+
     const { username, password } = req.body;
-    console.log("Attempting login for:", username); // Debugging line
+    console.log("Attempting login for:", username);
 
     const admin = await Admin.findOne({ username: username });
-    console.log("Admin Found:", admin); // Debugging line
+    console.log("Admin Found:", admin);
 
     if (!admin) {
       return res.send("<script>alert('Admin not found. Please check your username.'); window.location='/admin_login';</script>");
     }
 
     if (admin.password === password) {
-      req.session.admin = { username: admin.username }; // store admin session
-      console.log("Login Successful!"); // Debugging line
+      req.session.admin = { username: admin.username };
+      console.log("Login Successful!");
       return res.redirect("/admin_page");
     } else {
       return res.send("<script>alert('Wrong password. Try again.'); window.location='/admin_login';</script>");
@@ -296,7 +309,6 @@ app.post("/admin_login", async (req, res) => {
     res.send("<script>alert('Error logging in as admin. Try again.'); window.location='/admin_login';</script>");
   }
 });
-
 
 app.get("/admin_page", async (req, res) => {
   if (!req.session.admin) {
