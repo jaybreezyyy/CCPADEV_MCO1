@@ -167,98 +167,165 @@ input{
 .content{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   height: auto;
   justify-content: center;
   align-items: center;
 }
 
-.profile{
+.establishmentprofile{
   display:flex;
-  width: 100%;
   height: auto;
+  width: 100%;
   margin-top: 20px;
-  background-color:rgb(64, 180, 105);
-  border-top:30px solid ;
-  border-bottom: 30px solid ;
-  border-color: rgb(64, 180, 105);
 }
 
-.profilepicture{
-  height: 300px;
-  width: 300px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-left: 150px;
+.info, .photo {
+  flex: 1; /* Each takes 50% width */
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  height: 100%;
 }
 
 .info{
-  width: 50%;
-  text-align: left;
-  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
 }
 
+.photo{
+  width: 100%;
+  height: 400px;
+  background-size: contain; /* Ensures full image fits */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 5px;
+}
 
-.username{
-  font-size: 25px;
-  font-family: "Hanuman", serif;
+.rating{
+  font-size: 30px;
+  color:rgb(12, 170, 68)
+}
+
+.title{
+  font-weight: bold;
+  font-size: 45px;
+  font-family: "Kalam", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .description{
-  font-size: 25px;
+  font-size: 20px;
   font-family: "Hanuman", serif;
+  
 }
 
-.establishments{
-  display:flex;
-  flex-direction: column;
+.reviewbutton{
   margin-top: 50px;
-  width: 60%;
-  font-family: "Hanuman", serif;
+  text-align: center;
 }
 
-.esttitle{
+.buttondesign{
+  font-size: 30px;
+  font-family: Helvetica;
+  margin-right:3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
   text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.reviews{
+  margin-top: 50px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
   font-size: 45px;
 }
 
-.estlist{
-  display: flex;
-  flex-direction: column;
-  
-
+.reviewtitle{
+  text-align: center;
+  font-family: "Hanuman", serif;
 }
 
-.est_name{
-  font-size: 25px;
-  font-weight: bold;
-  color: black;
+.reviewpost{
+  margin: 50px;
 }
 
-.estlist{
+.profilepicture{
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  background-image: url("reviewer1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.profilepicture2{
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  background-image: url("profile.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.usertitle{
+  margin-left: 10px;
   display:flex;
   flex-direction: column;
 }
 
-.est_photo{
-  width: 100%;
-  height: 600px;
-  border-radius: 5px;
+.username{
+  font-family: "Kalam", serif;
+  font-style: normal;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 
+.title{
+  font-size: 25px;
+  font-weight: bold;
+}
 
+.postinfo{
+  display: flex;
+}
 
+.body{
+  font-size: 20px;
+  background-color: rgb(155, 155, 155);
+  font-family: "Hanuman", serif;
+  border:solid 8px;
+  border-color:rgb(155, 155, 155);
+  border-radius: 5px;
+}
 .footer{
   width:100%;
   height:90px;
   display:flex;
   border: solid 15px;
   border-color: #4D564F;
-  margin-top: 10px;
 }
 
 .contact_information{
@@ -304,62 +371,6 @@ input{
   font-size: 8px;
 }
 
-
-.options{
-  margin-top: 15%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 60%;
-}
-
-.editbutton{
-    text-align: left;
-}
-
-
-.buttondesign{
-  font-size: 30px;
-  font-family: Helvetica;
-  border-radius: 5px;
-  border-style: none;
-  height: 30px;
-  background-color: rgb(0, 80, 28);
-  color: white;
-  text-decoration: none;
-  padding: 12px;
-  height: auto;
-  text-align: center;
-  padding-left: 20;
-  padding-right: 20;
-  font-weight: bold;
-}
-
-.deletebuttondesign{
-  font-size: 30px;
-  font-family: Helvetica;
-  border-radius: 5px;
-  border-style: none;
-  height: 30px;
-  background-color: red;
-  color: white;
-  text-decoration: none;
-  padding: 12px;
-  height: auto;
-  text-align: center;
-  padding-left: 20;
-  padding-right: 20;
-  font-weight: bold;
-}
-
-
-
-
-.est_buttons{
-  display: flex;
-  flex-direction: row;
-  margin: 20px;
-  justify-content: center;
-  gap: 20px;
-
+.feedback{
+  font-family: "Hanuman", serif;
 }

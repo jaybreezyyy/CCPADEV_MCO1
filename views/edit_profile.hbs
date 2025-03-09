@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animo Eats</title>
+    <link rel="stylesheet" href="/css/edit_profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Hanuman:wght@100;300;400;700;900&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page">
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <a href="/" class="home_button">
+              <span class="green">A</span>nimo <span class="green">E</span>ats
+            </a>
+          </div>
+
+          <div class="searchbar">
+            <form>
+              <input type="text" placeholder="Search Here..." />
+              <button class="search_button">&#128269;</button>
+            </form>
+          </div>
+
+          <div class="profilebuttons">
+            <a href="/login_as" class="login_button"> Log In </a>
+            <a href="/signup" class="signup_button"> Sign Up </a>
+            <a href="/view_profile" class="view_profile_button">
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <div class="content">
+            <div class="edit-title">
+                <h1>Edit Profile</h1>
+            </div>
+            <form class="input-area" action="/edit_profile" method="POST" enctype="multipart/form-data">
+              <label for="new-name">New Username:</label> 
+              <input type="text" id="new-name" name="new_name" value="{{user.username}}"> <br> 
+
+              <label for="new-pass">New Password:</label> 
+              <input type="password" id="new-pass" name="new_pass" placeholder="Enter new password"> <br> 
+
+              <label for="avatar-upload">Avatar:</label> 
+              <input type="file" id="avatar-upload" name="avatar" accept="image/*"> <br> 
+
+              <label for="short-desc">Short Description:</label> 
+              <textarea id="short-desc" name="short_desc">{{user.short_description}}</textarea> <br> 
+
+              <div class="buttons">
+                  <input type="submit" id="save-button" value="Save Changes">
+                  <input type="button" id="delete-button" value="Delete Account" onclick="deleteProfile()">
+
+              </div>
+            </form>
+
+        </div>
+
+        <div class="footer">
+          <div class="contact_information">
+            <p><span class="green">&phone; </span>Contact Us</p>
+            <p><b>Phone: </b>091231231123</p>
+            <p><b>Email: </b>animoeats@gmail.com</p>
+          </div>
+          <div class="address">
+            <p><span class="green">&#127988;</span> Address</p>
+            <p>2401 Taft Ave, Malate, Manila, 1004 Metro Manila</p>
+          </div>
+          <div class="copyright_notice">
+            <p><span class="green">&#9888;</span> Copyright Notice</p>
+            <p class="copyright_text">
+              © 2025 Animo Eats. All Rights Reserved. This work, including all
+              text, images, graphics, and other content, is protected by
+              copyright laws and international treaties. Unauthorized
+              reproduction, distribution, or modification of any part of this
+              work is strictly prohibited without prior written permission from
+              the copyright owner.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+    function deleteProfile() {
+      if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+        fetch("/delete_profile", { method: "POST" })
+          .then(response => {
+            if (response.redirected) {
+              window.location.href = response.url; // Redirect after deletion
+            } else {
+              alert("Error deleting profile. Please try again.");
+            }
+          })
+          .catch(error => {
+            console.error("Delete Profile Error:", error);
+            alert("Error deleting profile. Please try again.");
+          });
+      }
+    }
+  </script>
+  </body>
+</html>

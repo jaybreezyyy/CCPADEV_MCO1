@@ -216,7 +216,7 @@ input {
     margin-bottom: 10%;
 }
 
-.reviews {
+.restogallery {
   width: 100%;
   font-family: "Hanuman", serif;
   overflow: hidden;
@@ -320,6 +320,14 @@ input {
   width: 900px;
   display: flex;
   overflow-x: scroll;
+  gap: 20px; /* Add gap between images */
+  padding: 10px;
+}
+
+.restogallery span {
+  display: inline-block;
+  flex: none;
+  max-width: 300px;
 }
 
 .restogallery div{
@@ -331,8 +339,9 @@ input {
   flex: none;
 }
 
-.restogallery div img{
-  width: 100%;
+.restogallery  img{
+  height: 200px;
+  width: auto;
   transform: scale(100%);
   transition: transform 0.5s;
 }
@@ -341,7 +350,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10% auto;
+  margin: auto;
 }
 
 #leftArrow, #rightArrow{
@@ -350,8 +359,13 @@ input {
   margin: 40px;
 }
 
-.restogallery div img:hover {
+.restogallery img:hover {
   filter: grayscale(0);
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.review_name {
+  font-size: 20px;
+  font-weight: bold;
 }

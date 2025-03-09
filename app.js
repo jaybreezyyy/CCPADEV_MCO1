@@ -20,13 +20,11 @@ app.use(express.urlencoded({ extended: true })); // handle form data
 app.use(express.json())
 app.use(
   session({
-    secret: secret_key, // Change this to a secure secret
+    secret: secret_key, // change this to a secure secret
     resave: false,
     saveUninitialized: true,
   })
 );
-
-
 
 // configure multer for Image Uploads
 const storage = multer.diskStorage({
@@ -53,13 +51,18 @@ mongoose.connect(atlas)
   console.log("connection failed");
 })
 
-
-
-
 app.set("view engine", "hbs")
 
+//helper to shorten the display description
+hbs.registerHelper("truncate", function (str, len) {
+  if (str.length > len) {
+    return str.substring(0, len) + "...";
+  }
+  return str;
+});
 
-//user schema
+
+//user schema - move to models folder
 const usersSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true }, 
@@ -69,17 +72,53 @@ const usersSchema = new mongoose.Schema({
 const User = mongoose.model("User", usersSchema);
 
 
-//routing
-app.get("/", (req, res) => {
-  res.render("main_page")
+const adminSchema = new mongoose.Schema({
+  username: { type: String, required: true},
+  password: { type:String, required: true}
+});
+const Admin = mongoose.model("Admin", adminSchema);
+
+const restoSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    rating: { type: String},
+    storeImage: { type: String, required: true },
+    mainImage: { type: String, required: true },
+    description: { type: String, required: true},
+  });
+const Resto = mongoose.model("Resto", restoSchema); 
+
+//routing - move to routes folder 
+app.get("/", async (req, res) => {
+  const restos = await Resto.find({});
+  res.render("main_page", {
+    restosList: restos
+  });
 });
 
 app.get("/add_establishment", (req, res) => {
   res.render("add_establishment");
 });
 
-app.get("/admin_page", (req, res) => {
-  res.render("admin_page");
+app.post("/post",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'mainImage', maxCount: 1}]), async(req, res)=>{
+  try{
+    const { name, description } = req.body;
+    const storeImage = '/uploads/' + req.files.storeImage[0].filename;
+    const mainImage = '/uploads/' + req.files.mainImage[0].filename;
+
+    const resto = new Resto({
+      name,
+      storeImage,
+      mainImage,
+      description
+    });
+    await resto.save();
+    console.log(resto);
+    // res.send("Establishment successfully added!");
+    res.redirect(("main_page"))
+  }catch(error){
+    console.error("Error adding establishment:", error);
+    res.send("Error adding establishment.");
+  }
 });
 
 app.get("/edit_establishment", (req, res) => {
@@ -163,6 +202,11 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
+    // Prevent simultaneous login of both user and admin
+    if (req.session.admin) {
+      req.session.destroy(); // Log out admin before user login
+    }
+
     const { name, password } = req.body;
     const check = await User.findOne({ username: name });
 
@@ -223,11 +267,13 @@ app.get("/view_establishment", (req, res) => {
 });
 
 app.get("/view_profile", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect("/login"); // Redirect if not logged in
+  if (req.session.admin) {
+    return res.redirect("/admin_page"); // redirect to admin page if admin is logged in
+  } else if (req.session.user) {
+    return res.render("view_profile", { user: req.session.user, isAdmin: false });
+  } else {
+    return res.redirect("/login"); // redirect if no one is logged in
   }
-  
-  res.render("view_profile", { user: req.session.user });
 });
 
 
@@ -243,9 +289,72 @@ app.get("/admin_login", (req, res) => {
   res.render("admin_login");
 });
 
-app.get("/admin_page", (req, res) => {
-  res.render("admin_page");
+app.post("/admin_login", async (req, res) => {
+  try {
+    // prevent simultaneous login of both admin and user
+    if (req.session.user) {
+      req.session.destroy(); // log out user before admin login
+    }
+
+    const { username, password } = req.body;
+    console.log("Attempting login for:", username);
+
+    const admin = await Admin.findOne({ username: username });
+    console.log("Admin Found:", admin);
+
+    if (!admin) {
+      return res.send("<script>alert('Admin not found. Please check your username.'); window.location='/admin_login';</script>");
+    }
+
+    if (admin.password === password) {
+      req.session.admin = { username: admin.username };
+      console.log("Login Successful!");
+      return res.redirect("/admin_page");
+    } else {
+      return res.send("<script>alert('Wrong password. Try again.'); window.location='/admin_login';</script>");
+    }
+  } catch (error) {
+    console.error("Admin Login Error:", error);
+    res.send("<script>alert('Error logging in as admin. Try again.'); window.location='/admin_login';</script>");
+  }
+});
+
+app.get("/admin_page", async (req, res) => {
+  if (!req.session.admin) {
+    return res.redirect("/admin_login"); // redirect if not logged in
+  }
+  const establishments = await Resto.find({});
+  res.render("admin_page", {
+    establishmentsList: establishments, admin: req.session.admin
   });
+});
+
+app.get("/admin_logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/admin_login");
+  });
+});
+
+app.get("/view_resto/:name", async (req, res) => {
+  try {
+    const resto = await Resto.findOne({ name: req.params.name });
+
+    if (!resto) {
+      return res.status(404).send("Restaurant not found.");
+    }
+
+    res.render("view_resto", {
+      name: resto.name,
+      rating: resto.rating,
+      description: resto.description,
+      image: resto.mainImage,
+    });
+  } catch (error) {
+    console.error("Error fetching restaurant:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 
 //404 page
 app.use((req, res) => {
