@@ -56,7 +56,7 @@ app.set("view engine", "hbs")
 //helper to shorten the display description
 hbs.registerHelper("truncate", function (str, len) {
   if (str.length > len) {
-    return str.substring(0, len) + "...";
+    return str.substring(0, len) + " ...";
   }
   return str;
 });
