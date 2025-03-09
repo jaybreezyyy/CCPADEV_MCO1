@@ -53,6 +53,13 @@ mongoose.connect(atlas)
 
 app.set("view engine", "hbs")
 
+hbs.registerHelper("truncate", function (str, len) {
+  if (str.length > len) {
+    return str.substring(0, len) + "...";
+  }
+  return str;
+});
+
 
 //user schema - move to models folder
 const usersSchema = new mongoose.Schema({
@@ -105,7 +112,8 @@ app.post("/post",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'main
     });
     await resto.save();
     console.log(resto);
-    res.send("Establishment successfully added!");
+    // res.send("Establishment successfully added!");
+    res.redirect(("main_page"))
   }catch(error){
     console.error("Error adding establishment:", error);
     res.send("Error adding establishment.");
