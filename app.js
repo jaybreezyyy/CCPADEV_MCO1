@@ -355,6 +355,23 @@ app.get("/view_resto/:name", async (req, res) => {
   }
 });
 
+app.get("/search", async (req, res) => {
+  try {
+    const query = req.query.query; // Get the search query from the input
+    const resto = await Resto.findOne({ name: { $regex: new RegExp(query, "i") } });
+
+    if (!resto) {
+      return res.send("<script>alert('Restaurant not found!'); window.location='/';</script>");
+    }
+
+    res.redirect(`/view_resto/${resto.name}`);
+  } catch (error) {
+    console.error("Search Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 
 //404 page
 app.use((req, res) => {

@@ -18,10 +18,10 @@
         </div>
 
         <div class="searchbar">
-          <form>
-            <input type="text" placeholder="Search Here..." />
-            <button class="search_button">&#128269;</button>
-          </form>
+          <form action="/search" method="GET">
+              <input type="text" name="query" placeholder="Search Here..." required />
+              <button type="submit" class="search_button">&#128269;</button>
+            </form>
         </div>
 
         <div class="profilebuttons">
