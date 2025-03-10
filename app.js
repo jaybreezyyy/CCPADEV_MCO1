@@ -156,6 +156,21 @@ app.post("/update_establishment/:id", upload.fields([{ name: 'storeImage', maxCo
   }
 });
 
+app.get("/delete_establishment/:id", async (req, res) => {
+  const restoId = req.params.id;
+  Resto.findByIdAndDelete(restoId)
+  .then((resto) => {
+    if(resto) {
+      res.redirect("/admin_page");
+    } else {
+      console.log("Restaurant not found");
+    }
+  })
+  .catch((error) => {
+    console.log("Error finding restaurant", error);
+  });
+});
+
 app.get("/edit_profile", (req, res) => {
   if (!req.session.user) {
     return res.redirect("/login"); // redirect if not logged in
