@@ -41,17 +41,30 @@
           <div class="edit-title">
             <h1>Edit An <span class="eats">Establishment</span></h1>
           </div>
-          <form class="input-area">
-            <label for="new-name">Establishment Name:</label>
-            <input type="text" id="new-name" name="new-name" /> <br />
-            <label for="avatar-upload">Avatar:</label>
-            <input type="file" id="avatar-upload" accept="image/*" /> <br />
-            <label for="short-desc">Short Description:</label>
-            <textarea id="short-desc" name="short-desc"></textarea> <br />
+          <!--<form action="/update/{{resto.id}}" method="POST" class="input-area" enctype = "multipart/form-data">
+            <input id="id" type="hidden" value="{{resto.id}}">
+              <label for="new-name">Establishment Name:</label>
+              <input type="text" id="name" name="new-name" value="{{resto.name}}"/> <br />
+              <label for="avatar-upload">Avatar:</label>
+              <input type="file" id="avatar-upload" accept="image/*" /> <br />
+              <label for="short-desc">Short Description:</label>
+              <textarea id="description" name="short-desc">{{resto.description}}</textarea> <br />
+              <div class="buttons">
+                  <button type="submit" id="signup-button">Save </button>
+              </div>
+          </form> -->
+          <form action="/update_establishment/{{resto._id}}" method="POST" class="input-area" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{resto._id}}">
+            <label for="name">Establishment Name:</label>
+            <input type="text" id="name" name="name" value="{{resto.name}}" required /> <br />
+            <label for="storeImage">Storefront:</label>
+            <input type="file" id="storeImage" name="storeImage" accept="image/*" /> <br />
+            <label for="mainImage">Main Image:</label>
+            <input type="file" id="mainImage" name="mainImage" accept="image/*" /> <br />
+            <label for="description">Short Description:</label>
+            <textarea id="description" name="description" required>{{resto.description}}</textarea> <br />
             <div class="buttons">
-              <a href="/admin_page">
-                <input type="button" id="signup-button" value="Save" />
-              </a>
+              <button type="submit" id="save-button">Save</button>
             </div>
           </form>
         </div>

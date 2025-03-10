@@ -194,19 +194,19 @@ input {
   font-family: "Hanuman", serif;
 }
 
-#new-name {
+#name {
   max-width: 600px;
   min-width: 200px;
   width: 100%;
 }
 
 
-#storefront-upload, #main-upload {
+#storeImage, #mainImage {
   background-color: transparent;
   border: none;
 }
 
-#short-desc {
+#description {
   resize: none;
   width: 100%;
   max-width: 600px;
@@ -226,7 +226,7 @@ input {
   width: 100%;
 }
 
-#signup-button {
+#save-button {
   font-size: 30px;
   font-family: Helvetica;
   margin-right: 3px;

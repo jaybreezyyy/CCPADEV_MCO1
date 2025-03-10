@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
 const session = require("express-session");
+const methodOverride = require('method-override');
+
 
 
 //mongodb+srv://joseandreocanilao:<db_password>@cluster0.3lzzu.mongodb.net/
@@ -15,6 +17,7 @@ const atlas = "mongodb+srv://joseandreocanilao:" + atlas_pw + "@cluster0.3lzzu.m
 
 //express app
 const app = express();
+app.use(methodOverride('_method'));
 app.use(express.json()); // handle JSON data
 app.use(express.urlencoded({ extended: true })); // handle form data
 app.use(express.json())
@@ -120,8 +123,39 @@ app.post("/post",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'main
   }
 });
 
-app.get("/edit_establishment", (req, res) => {
-  res.render("edit_establishment");
+app.get("/edit_establishment/:id", async(req, res) => {
+  try{
+    const resto = await Resto.findById(req.params.id);
+    res.render("edit_establishment", { resto: resto});
+    } catch (error) {
+      console.error("Error editing establishment:", error);
+      res.redirect("/admin_page");
+    }
+});
+
+app.post("/update_establishment/:id", upload.fields([{ name: 'storeImage', maxCount: 1 }, { name: 'mainImage', maxCount: 1 }]), async (req, res) => {
+  try {
+    const { name, rating, description } = req.body;
+    const updateData = {
+      name,
+      rating,
+      description
+    };
+
+    if (req.files['storeImage']) {
+      updateData.storeImage = '/uploads/' + req.files['storeImage'][0].filename;
+    }
+
+    if (req.files['mainImage']) {
+      updateData.mainImage = '/uploads/' + req.files['mainImage'][0].filename;
+    }
+
+    await Resto.findByIdAndUpdate(req.params.id, updateData);
+    res.redirect("/admin_page?success=true"); // Redirect to the admin page after updating
+  } catch (error) {
+    console.error("Error updating establishment:", error);
+    res.send("Error updating establishment.");
+  }
 });
 
 app.get("/edit_profile", (req, res) => {
