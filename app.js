@@ -67,6 +67,10 @@ hbs.registerHelper("times", function(n, block) {
   return stars;
 });
 
+hbs.registerHelper("eq", function (a, b) {
+  return a === b;
+});
+
 
 //user schema - move to models folder
 const usersSchema = new mongoose.Schema({
@@ -324,6 +328,53 @@ app.post("/write_review", async (req, res) => {
   }
 });
 
+
+app.get("/edit_review/:id", async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    if (!review) {
+      return res.status(404).send("Review not found.");
+    }
+
+    res.render("edit_review", { review });
+  } catch (error) {
+    console.error("Error fetching review for edit:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+app.post("/edit_review/:id", async (req, res) => {
+  try {
+    const { title, rating, body } = req.body;
+
+    const updatedReview = await Review.findByIdAndUpdate(
+      req.params.id,
+      { title, rating: parseInt(rating), body },
+      { new: true }
+    );
+
+    if (!updatedReview) {
+      return res.status(404).send("Review not found.");
+    }
+
+    res.redirect("/view_profile");
+  } catch (error) {
+    console.error("Error updating review:", error);
+    res.status(500).send("Error updating review.");
+  }
+});
+
+
+app.post("/delete_review/:id", async (req, res) => {
+  try {
+    await Review.findByIdAndDelete(req.params.id);
+    res.redirect("/view_profile");
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    res.status(500).send("Error deleting review.");
+  }
+});
 
 
 app.get("/login_as", (req, res) => {

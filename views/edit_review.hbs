@@ -22,7 +22,7 @@
           <form action="/search" method="GET">
               <input type="text" name="query" placeholder="Search Here..." required />
               <button type="submit" class="search_button">&#128269;</button>
-            </form>
+          </form>
         </div>
 
         <div class="profilebuttons">
@@ -33,67 +33,54 @@
           </a>
         </div>
       </div>
-     
+
       <div class="content">
-        <div class="title"><h1>Edit <span class="review">Review</span></h1></div>
+        <div class="title">
+          <h1>Edit <span class="review">Review</span></h1>
+        </div>
+
         <div class="inputs">
           <div class="titleblock">
-            <div class="titletext">edit title:</div>
-            <div class="titleinput">
-              <form>
-                <input type="text" class="userinput" placeholder="Title">
-              </form>
+            <div class="titletext">Edit Title:</div>
+            
+            <!-- Main Form for Editing Review -->
+            <form id="editReviewForm" action="/edit_review/{{review._id}}" method="POST">
+              <input type="text" name="title" class="userinput" value="{{review.title}}" required>
+
+              <div class="titletext">Edit Rating:</div>
+              <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" {{#if (eq review.rating 5)}}checked{{/if}}>
+                <label for="star5">★</label>
+                
+                <input type="radio" id="star4" name="rating" value="4" {{#if (eq review.rating 4)}}checked{{/if}}>
+                <label for="star4">★</label>
+                
+                <input type="radio" id="star3" name="rating" value="3" {{#if (eq review.rating 3)}}checked{{/if}}>
+                <label for="star3">★</label>
+                
+                <input type="radio" id="star2" name="rating" value="2" {{#if (eq review.rating 2)}}checked{{/if}}>
+                <label for="star2">★</label>
+                
+                <input type="radio" id="star1" name="rating" value="1" {{#if (eq review.rating 1)}}checked{{/if}}>
+                <label for="star1">★</label>
+              </div>
+
+              <div class="titletext">Edit Body:</div>
+              <textarea name="body" class="userinput">{{review.body}}</textarea>
+            </form>
+
+            <!-- Delete Form (Separate for deleting) -->
+            <form id="deleteReviewForm" action="/delete_review/{{review._id}}" method="POST"></form>
+
+            <!-- Buttons for saving and deleting -->
+            <div class="saveanddelete">
+              <button type="button" class="buttondesign" onclick="submitEditForm()">Save Changes</button>              
+              <button type="button" class="deletebuttondesign" onclick="submitDeleteForm()">Delete Review</button>
             </div>
+
           </div>
         </div>
-        
-        <div class="inputs">
-          <div class="titleblock">
-            <div class="titletext">edit rating:</div>
-            <div class="star-rating">
-              <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-              <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-              <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-              <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-              <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-          </div>
-            </div>
-          </div>
-        
-          <div class="inputs">
-            <div class="titleblock">
-              <div class="titletext">edit body:</div>
-              <div class="titleinput">
-                <form>
-                  <input type="text" class="userinput" placeholder="Body">
-                </form>
-              </div>
-            </div>
-
-
-          <div class="saveanddelete">
-            <div class="editbutton">
-              <a href="/view_profile" class="buttondesign">
-                Save Changes
-              </a>
-            </div>
-
-            <div class="deletebutton">
-              <a href="/view_profile" class="deletebuttondesign">
-                Delete Post
-              </a>
-            </div>
-          </div>
       </div>
-      
-      
-
-        
-    
-    
-      
-      
-      
     </div>
    
     <div class="footer">
@@ -110,10 +97,21 @@
           <p><span class="green">&#9888;</span> Copyright Notice</p>
           <p class="copyright_text">© 2025 Animo Eats. All Rights Reserved. This work, including all text, images, graphics, and other content, is protected by copyright laws and international treaties. Unauthorized reproduction, distribution, or modification of any part of this work is strictly prohibited without prior written permission from the copyright owner.</p>
       </div>
+    </div>
+
+    <!-- JavaScript for triggering form submission -->
+    <script>
+      function submitEditForm() {
+        document.getElementById("editReviewForm").submit();
+      }
+
+      function submitDeleteForm() {
+        if (confirm("Are you sure you want to delete this review?")) {
+          document.getElementById("deleteReviewForm").submit();
+        }
+      }
+    </script>
+
   </div>
- 
-
-
-
 </body>
 </html>
