@@ -234,9 +234,70 @@ app.post("/delete_profile", async (req, res) => {
 });
 
 
-app.get("/edit_review", (req, res) => {
-  res.render("edit_review");
+//write review schema
+const createReviewSchema = new mongoose.Schema({
+  restoName: { type: String, required: true },
+  username: { type: String, required: true }, // user must be logged in
+  title: { type: String, required: true },
+  rating: { type: Number, required: true },
+  body: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+  helpfulCount: { type: Number, default: 0 }
 });
+const Review = mongoose.model("Review", createReviewSchema);
+
+app.get('/write_review/:restoName', async (req, res) => {
+  try {
+      const restaurant = await Resto.findOne({ name: req.params.restoName });
+
+      if (!restaurant) {
+          return res.status(404).send("Restaurant not found.");
+      }
+
+      res.render('write_review', { restaurant });
+  } catch (err) {
+      console.error("Error fetching restaurant for review:", err);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
+app.post("/write_review", async (req, res) => {
+  try {
+    
+
+    const { restoName, title, rating, body,helpfulCount } = req.body;
+
+    if (!restoName || !title || !rating || !body) {
+      return res.status(400).send("All fields are required.");
+    }
+
+    if (!req.session.user) {
+      return res.status(401).send("You must be logged in to post a review.");
+    }
+
+    const newReview = new Review({
+      restoName,
+      title,
+      rating: parseInt(rating),
+      body,
+      username: req.session.user.username,
+      helpfulCount : 0, 
+    });
+
+    await newReview.save();
+    console.log("Review Saved:", newReview); 
+
+    res.redirect(`/view_resto/${restoName}`);
+  } catch (error) {
+    console.error("Error saving review:", error);
+    res.status(500).send("Error submitting review.");
+  }
+});
+
+
 
 app.get("/login_as", (req, res) => {
   res.render("login_as");

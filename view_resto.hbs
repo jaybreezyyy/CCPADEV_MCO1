@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animo Eats</title>
+  <link rel="stylesheet" href="/css/view_resto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Hanuman:wght@100;300;400;700;900&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <div class="container">  
+      <div class="header">
+        <div class="logo">
+          <a href="/" class="home_button">
+            <span class="green">A</span>nimo <span class="green">E</span>ats
+          </a>
+        </div>
+
+        <div class="searchbar">
+          <form>
+            <input type="text" placeholder="Search Here..." />
+            <button class="search_button">&#128269;</button>
+          </form>
+        </div>
+
+        <div class="profilebuttons">
+          <a href="/login_as" class="login_button"> Log In </a>
+          <a href="/signup" class="signup_button"> Sign Up </a>
+          <a href="/view_profile" class="view_profile_button">
+            View Profile
+          </a>
+        </div>
+      </div>
+
+
+      <div class="content">
+        <div class="establishmentprofile">
+          <div class="info">
+            <div class="title"><h1><span class="green">{{name}}</span></h1></div>
+            <div class="rating">{{rating}}</div>
+            <div class="description"><p>{{description}}</p>
+            <div class="reviewbutton">
+              <a href="/write_review/{{name}}" class="buttondesign">
+                Write A Review ★
+              </a>
+            </div>
+          </div>
+          </div>
+          <div ><img class="photo" src="{{image}}" alt="{{name}}"></div>
+          </div>
+        </div>
+        
+        
+ <div class="reviews">
+  <div class="reviewtitle"><h1>Recent Reviews</h1></div>
+
+  {{#if reviews.length}}
+    {{#each reviews}}
+      <div class="reviewpost">
+        <div class="postinfo">
+          <div class="profilepicture" style="background-image: url('{{this.profilePic}}');"></div>
+          <div class="usertitle">
+            <div class="username">
+              <a href="/view_profile?userId={{this.userId}}" class="username">{{this.username}}</a>
+            </div>
+            <div class="title">{{this.title}}</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>{{this.body}}</p>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <p>No reviews yet. Be the first to write one!</p>
+  {{/if}}
+</div>
+          
+
+    
+
+
+
+      <div class="footer">
+        <div class="contact_information">
+            <p><span class="green">&phone; </span>Contact Us</p>
+            <p><b>Phone: </b>091231231123</p>
+            <p><b>Email: </b>animoeats@gmail.com</p>
+        </div>
+        <div class="address">
+            <p><span class="green">&#127988;</span> Address</p>
+            <p>2401 Taft Ave, Malate, Manila, 1004 Metro Manila</p>
+        </div>
+        <div class="copyright_notice">
+            <p><span class="green">&#9888;</span> Copyright Notice</p>
+            <p class="copyright_text">© 2025 Animo Eats. All Rights Reserved. This work, including all text, images, graphics, and other content, is protected by copyright laws and international treaties. Unauthorized reproduction, distribution, or modification of any part of this work is strictly prohibited without prior written permission from the copyright owner.</p>
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script>
+    document.querySelectorAll(".helpful-button").forEach(button => {
+      button.addEventListener("click", function() {
+        if (this.style.backgroundColor === "green") {
+          this.style.backgroundColor = "";
+          this.style.color = "";
+          this.querySelector(".thumb-icon").style.color = "green";
+        } else {
+          this.style.backgroundColor = "green";
+          this.style.color = "white";
+          this.querySelector(".thumb-icon").style.color = "white";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
