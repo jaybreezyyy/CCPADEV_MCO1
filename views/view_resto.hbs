@@ -53,57 +53,38 @@
         </div>
         
         <div class="reviews">
-          <div class="reviewtitle"><h1>Recent Reviews</h1></div>
-          <div class="reviewpost">
-            <div class="postinfo">
-              <div class="profilepicture"></div>
-              <div class="usertitle">
-                <div class="username">username: <span><a href="visit_profile1.html" class="username">noiceGUY</a></span></div>
-                <div class="title">title: TOP OF THE LINE CHICKEN</div>
-              </div>
-            </div>
-            <div class="body"><p>
-              I recently tried 24 Chicken, and I must say, it exceeded my expectations! Their boneless Korean-style fried chicken is absolutely delicious—crispy on the outside, tender and juicy on the inside. I ordered the Yangnyeom and Snow Cheese flavors, and both were amazing! The sweet and spicy kick of the Yangnyeom was perfectly balanced, while the Snow Cheese had a rich, cheesy flavor that was super satisfying.
+  <div class="reviewtitle"><h1>Recent Reviews</h1></div>
 
-              The serving size was generous for the price, making it great value for money. Plus, their Kimchi Rice was a perfect side dish—it added an extra layer of flavor to the meal. The ordering process was smooth, and the delivery was fast, ensuring the chicken was still hot and fresh when it arrived.
-
-              Overall, I highly recommend 24 Chicken for anyone craving authentic Korean fried chicken at an affordable price. I’ll definitely be ordering again soon! 🍗🔥👏
-
-              #24Chicken #KoreanFriedChicken #MustTry
-            </p></div>
-            <div class="feedback">
-              <button class="helpful-button" style="font-size:24px">
-                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
-              </button>
-            </div>
+  {{#if reviews.length}}
+    {{#each reviews}}
+      <div class="reviewpost">
+        <div class="postinfo">
+          <div >
+            <img src="/uploads/{{this.avatar}}" alt="User Avatar" class="profilepicture">
           </div>
 
-          <div class="reviewpost">
-            <div class="postinfo">
-              <div class="profilepicture2"></div>
-              <div class="usertitle">
-                <div class="username">username: <span><a href="view_profile.html" class="username">GROUP 9</a></span></div>
-                <div class="title">title: Our Favorite</div>
-              </div>
+          <div class="usertitle">
+            <div class="username">
+              username: <span><a href="/visit_profile/{{this.username}}" class="username">{{this.username}}</a></span>
             </div>
-            <div class="body"><p>
-              I finally got to try 24 Chicken, and I was not disappointed! The chicken was perfectly crispy, flavorful, and well-seasoned, even without sauce. I ordered the Jack Daniel’s and Spicy Yangnyeom flavors, and both were amazing! The Jack Daniel’s had a unique, slightly smoky-sweet taste, while the Spicy Yangnyeom had just the right level of heat.
-
-              What I love most is that their chicken is boneless, making it easy to eat, and the portions are generous for the price. I also tried their Kimchi Rice, which complemented the chicken really well. Delivery was quick, and the food arrived hot and fresh.
-
-              Overall, 24 Chicken is a must-try for anyone who loves Korean fried chicken! Will definitely order again. 🍗🔥💯
-
-              #24ChickenPH #CrispyAndTasty #KoreanFriedChicken
-            </p></div>
-            <div class="feedback">
-              <button class="helpful-button" style="font-size:24px">
-                Mark as Helpful <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
-              </button>
-            </div>
+            <div class="title">title: {{this.title}}</div>
           </div>
-          
-
+        </div>
+        <div class="body"><p>{{this.body}}</p></div>
+        <div class="feedback">
+          <button class="helpful-button" style="font-size:24px">
+            Mark as Helpful ({{this.helpfulCount}}) <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+          </button>
+        </div>
       </div>
+    {{/each}}
+  {{else}}
+    <p style="text-align: center; font-family: 'Hanuman', serif;">
+    No reviews yet. Be the first to write a review!
+    </p>
+  {{/if}}
+</div>
+
 
 
 

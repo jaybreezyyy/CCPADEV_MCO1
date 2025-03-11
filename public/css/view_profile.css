@@ -218,6 +218,7 @@ input{
   margin-top: 50px;
   width: 60%;
   font-family: "Hanuman", serif;
+  
 }
 
 .reviewtitle{
@@ -250,6 +251,7 @@ input{
   border:solid 8px;
   border-color:rgb(155, 155, 155);
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .footer{

@@ -60,42 +60,38 @@
             </div>
           </div>
 
-          <div class="review">
-            <div class="reviewtitle"><h1>Recent Activity</h1></div>
-            <div class="reviewpost">
-              <div class="establishmentname">
-                Establishment:
-                <span
-                  ><a href="view_24chicken.html" class="establishmentname"
-                    >24 Chicken</a
-                  ></span
-                >
-              </div>
-              <div class="title">Title: Our Favorite</div>
-              <div class="ratingdiv">
-                Rating: <span class="rating">★★★★★</span>
-                <span><a href="/edit_review" class="editreview"></a></span>
-              </div>
-            </div>
+              <div class="review">
+      <div class="reviewtitle"><h1>Recent Reviews</h1></div>
 
+      {{#if reviews.length}}
+        {{#each reviews}}
+          <div class="reviewpost">
+            <div class="establishmentname">
+              Establishment:
+              <span><a href="/view_resto/{{this.restoName}}" class="establishmentname">{{this.restoName}}</a></span>
+            </div>
+            <div class="title">Title: {{this.title}}</div>
+            <div class="ratingdiv">
+              Rating: 
+              <span class="rating">
+                {{#times this.rating}}★{{/times}} <!-- Display star rating -->
+              </span>
+              <span><a href="/edit_review/{{this._id}}" class="editreview"></a></span>
+            </div>
             <div class="body">
-              <p>
-                I finally got to try 24 Chicken, and I was not disappointed! The
-                chicken was perfectly crispy, flavorful, and well-seasoned, even
-                without sauce. I ordered the Jack Daniel’s and Spicy Yangnyeom
-                flavors, and both were amazing! The Jack Daniel’s had a unique,
-                slightly smoky-sweet taste, while the Spicy Yangnyeom had just
-                the right level of heat. What I love most is that their chicken
-                is boneless, making it easy to eat, and the portions are
-                generous for the price. I also tried their Kimchi Rice, which
-                complemented the chicken really well. Delivery was quick, and
-                the food arrived hot and fresh. Overall, 24 Chicken is a
-                must-try for anyone who loves Korean fried chicken! Will
-                definitely order again. 🍗🔥💯 #24ChickenPH #CrispyAndTasty
-                #KoreanFriedChicken
-              </p>
+              <p>{{this.body}}</p>
             </div>
           </div>
+        {{/each}}
+      {{else}}
+        <p style="text-align: center; font-family: 'Hanuman', serif;">
+          No reviews yet. Write your first review!
+        </p>
+      {{/if}}
+    </div>
+
+
+          
         </div>
       </div>
 

@@ -61,6 +61,12 @@ hbs.registerHelper("truncate", function (str, len) {
   return str;
 });
 
+hbs.registerHelper("times", function(n, block) {
+  let stars = "";
+  for (let i = 0; i < n; i++) stars += block.fn(i);
+  return stars;
+});
+
 
 //user schema - move to models folder
 const usersSchema = new mongoose.Schema({
@@ -87,6 +93,18 @@ const restoSchema = new mongoose.Schema({
   });
 const Resto = mongoose.model("Resto", restoSchema); 
 
+
+//write review schema
+const createReviewSchema = new mongoose.Schema({
+  restoName: { type: String, required: true },
+  username: { type: String, required: true }, // user must be logged in
+  title: { type: String, required: true },
+  rating: { type: Number, required: true },
+  body: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+  helpfulCount: { type: Number, default: 0 }
+});
+const Review = mongoose.model("Review", createReviewSchema);
 //routing - move to routes folder 
 app.get("/", async (req, res) => {
   const restos = await Resto.find({});
@@ -234,17 +252,7 @@ app.post("/delete_profile", async (req, res) => {
 });
 
 
-//write review schema
-const createReviewSchema = new mongoose.Schema({
-  restoName: { type: String, required: true },
-  username: { type: String, required: true }, // user must be logged in
-  title: { type: String, required: true },
-  rating: { type: Number, required: true },
-  body: { type: String, required: true },
-  date: { type: Date, default: Date.now },
-  helpfulCount: { type: Number, default: 0 }
-});
-const Review = mongoose.model("Review", createReviewSchema);
+
 
 app.get('/write_review/:restoName', async (req, res) => {
   try {
@@ -373,15 +381,33 @@ app.get("/view_establishment", (req, res) => {
   res.render("view_establishment");
 });
 
-app.get("/view_profile", (req, res) => {
-  if (req.session.admin) {
-    return res.redirect("/admin_page"); // redirect to admin page if admin is logged in
-  } else if (req.session.user) {
-    return res.render("view_profile", { user: req.session.user, isAdmin: false });
-  } else {
-    return res.redirect("/login"); // redirect if no one is logged in
+app.get("/view_profile", async (req, res) => {
+  if (!req.session.user) {
+    return res.redirect("/login"); // Redirect if not logged in
+  }
+
+  try {
+    // fetch the user’s reviews
+    const reviews = await Review.find({ username: req.session.user.username }).sort({ date: -1 });
+
+    // fetch the restaurant details for each review
+    const reviewsWithDetails = await Promise.all(
+      reviews.map(async (review) => {
+        const resto = await Resto.findOne({ name: review.restoName });
+        return {
+          ...review._doc,
+          restoImage: resto ? resto.mainImage : "/uploads/default.png", // Use default if no image
+        };
+      })
+    );
+
+    res.render("view_profile", { user: req.session.user, reviews: reviewsWithDetails });
+  } catch (error) {
+    console.error("Error fetching user reviews:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
+
 
 
 app.get("/visit_profile", (req, res) => {
@@ -445,6 +471,24 @@ app.get("/admin_logout", (req, res) => {
 app.get("/view_resto/:name", async (req, res) => {
   try {
     const resto = await Resto.findOne({ name: req.params.name });
+    const reviews = await Review.find({ restoName: req.params.name }).sort({ date: -1 });
+
+    const reviewsWithAvatars = await Promise.all(reviews.map(async (review) => {
+    const user = await User.findOne({ username: review.username });
+    return {
+      ...review._doc,
+      avatar: user ? user.avatar : "default.png", // Use default if no avatar
+    };
+    }));
+
+res.render("view_resto", {
+  name: resto.name,
+  rating: resto.rating,
+  description: resto.description,
+  image: resto.mainImage,
+  reviews: reviewsWithAvatars, // Updated reviews with avatars
+});
+
 
     if (!resto) {
       return res.status(404).send("Restaurant not found.");
@@ -455,12 +499,14 @@ app.get("/view_resto/:name", async (req, res) => {
       rating: resto.rating,
       description: resto.description,
       image: resto.mainImage,
+      reviews: reviews, // Pass reviews to the template
     });
   } catch (error) {
     console.error("Error fetching restaurant:", error);
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.get("/search", async (req, res) => {
   try {
