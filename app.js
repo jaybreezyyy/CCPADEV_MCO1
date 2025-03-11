@@ -151,14 +151,6 @@ app.get("/edit_establishment/:id", (req, res) => {
     .catch((error) => {
       console.error("Error finding restaurant:", error);
     });
-
-    /*try{
-    const resto = await Resto.findById(req.params.id);
-    res.render("edit_establishment", { resto: resto});
-    } catch (error) {
-      console.error("Error editing establishment:", error);
-      res.redirect("/admin_page");
-    } */
   });
 
 
