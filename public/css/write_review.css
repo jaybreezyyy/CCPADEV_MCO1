@@ -356,3 +356,87 @@ input {
 .copyright_text {
   font-size: 8px;
 }
+
+
+
+.titleinput .userinput, 
+textarea.userinput {
+    width: 80%; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    display: block; 
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+textarea.userinput {
+    height: 150px; 
+    resize: none; 
+}
+
+
+.editbutton {
+    text-align: center; 
+    margin-top: 20px;
+}
+
+
+.buttondesign {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background 0.3s ease-in-out;
+}
+
+
+.buttondesign:hover {
+    background-color: #45a049;
+    cursor: pointer; 
+}
+
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 100%;
+}
+
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.userinput, 
+textarea {
+  width: 60%; 
+  max-width: 500px; 
+  min-width: 300px; 
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  left:200%;
+  transform: translateX(-200%);
+}
+
+
+textarea {
+  height: 150px; 
+  resize: none; 
+}
+
+
