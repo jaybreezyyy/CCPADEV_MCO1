@@ -41,7 +41,7 @@
           <div class="edit-title">
             <h1>Add New <span class="eats">Establishment</span></h1>
           </div>
-          <form action="/post" class="input-area" method="POST" enctype="multipart/form-data">
+          <form action="/save_establishment" class="input-area" method="POST" enctype="multipart/form-data">
             <label for="name">Establishment Name:</label>
             <input type="text" id="name" name="name" required /> <br />
             <label for="storefront-upload">Storefront:</label>
@@ -51,9 +51,7 @@
             <label for="description">Short Description:</label>
             <textarea id="description" name="description" required></textarea> <br />
             <div class="buttons">
-              <!-- <a href="/admin_page"> -->
                 <button type="submit" id="signup-button">Add Establishment</button>
-              </a>
             </div>
           </form>
         </div>

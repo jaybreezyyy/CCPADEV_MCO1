@@ -113,65 +113,84 @@ app.get("/", async (req, res) => {
   });
 });
 
+//add establishment
 app.get("/add_establishment", (req, res) => {
   res.render("add_establishment");
 });
+//add establishment
+app.post("/save_establishment",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'mainImage', maxCount: 1}]), (req, res)=>{
+  
+  const resto = new Resto({
+    name: req.body.name,
+    storeImage: '/uploads/' + req.files['storeImage'][0].filename,
+    mainImage: '/uploads/' + req.files['mainImage'][0].filename,
+    description: req.body.description
+  });
 
-app.post("/post",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'mainImage', maxCount: 1}]), async(req, res)=>{
-  try{
-    const { name, description } = req.body;
-    const storeImage = '/uploads/' + req.files.storeImage[0].filename;
-    const mainImage = '/uploads/' + req.files.mainImage[0].filename;
-
-    const resto = new Resto({
-      name,
-      storeImage,
-      mainImage,
-      description
-    });
-    await resto.save();
-    console.log(resto);
-    // res.send("Establishment successfully added!");
-    res.redirect(("/"))
-  }catch(error){
-    console.error("Error adding establishment:", error);
-    res.send("Error adding establishment.");
-  }
+  resto.save()
+  .then(() => {
+    res.redirect("/");
+  })
+  .catch((error) => {
+    console.error("Error finding resto:", error);
+  });
 });
 
-app.get("/edit_establishment/:id", async(req, res) => {
-  try{
+app.get("/edit_establishment/:id", (req, res) => {
+  const restoId = req.params.id;
+  Resto.findById(restoId)
+  .then((resto) => {
+    if(resto) {
+      res.render("edit_establishment", {
+        resto: resto,
+      });
+    } else {
+      console.log("Restaurant not found");
+      }
+    })
+    .catch((error) => {
+      console.error("Error finding restaurant:", error);
+    });
+
+    /*try{
     const resto = await Resto.findById(req.params.id);
     res.render("edit_establishment", { resto: resto});
     } catch (error) {
       console.error("Error editing establishment:", error);
       res.redirect("/admin_page");
-    }
-});
+    } */
+  });
 
-app.post("/update_establishment/:id", upload.fields([{ name: 'storeImage', maxCount: 1 }, { name: 'mainImage', maxCount: 1 }]), async (req, res) => {
-  try {
-    const { name, rating, description } = req.body;
-    const updateData = {
-      name,
-      rating,
-      description
-    };
 
-    if (req.files['storeImage']) {
-      updateData.storeImage = '/uploads/' + req.files['storeImage'][0].filename;
-    }
-
-    if (req.files['mainImage']) {
-      updateData.mainImage = '/uploads/' + req.files['mainImage'][0].filename;
-    }
-
-    await Resto.findByIdAndUpdate(req.params.id, updateData);
-    res.redirect("/admin_page?success=true"); // Redirect to the admin page after updating
-  } catch (error) {
-    console.error("Error updating establishment:", error);
-    res.send("Error updating establishment.");
+app.post("/update_establishment", upload.fields([{ name: 'storeImage', maxCount: 1 }, { name: 'mainImage', maxCount: 1 }]), (req, res) => {
+  const restoId = req.body.id;
+  const name = req.body.name;
+  const description = req.body.description;
+  
+  const updateData ={
+    name: name,
+    description: description,
+  };
+  
+  if(req.files['storeImage']){
+    updateData.storeImage = '/uploads/' + req.files['storeImage'][0].filename;
   }
+
+  if(req.files['mainImage']){
+    updateData.mainImage = '/uploads/' + req.files['mainImage'][0].filename;
+  }
+
+  Resto.findByIdAndUpdate(restoId, updateData)
+    .then((resto) => {
+      if (resto) {
+        res.redirect("/admin_page");
+      } else {
+        console.log("Restaurant not found");
+      }
+    })
+    .catch((error) => {
+      console.error("Error finding Restaurant:", error);
+    });
 });
 
 app.get("/delete_establishment/:id", async (req, res) => {
