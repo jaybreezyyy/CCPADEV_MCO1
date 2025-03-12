@@ -90,10 +90,10 @@ const Admin = mongoose.model("Admin", adminSchema);
 
 const restoSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    rating: { type: String},
     storeImage: { type: String, required: true },
     mainImage: { type: String, required: true },
     description: { type: String, required: true},
+    rating: { type: Number, default: 0},
   });
 const Resto = mongoose.model("Resto", restoSchema); 
 
@@ -319,6 +319,21 @@ app.post("/write_review", async (req, res) => {
     });
 
     await newReview.save();
+
+    const reviews = await Review.find({ restoName });
+    const numReviews = reviews.length;
+    const avgRating = reviews.reduce((acc, review) => acc + review.rating, 0) / numReviews;
+
+    const restaurant = await Resto.findOne({ name: restoName });
+    if (!restaurant) {
+      return res.status(404).send("Restaurant not found.");
+    }
+
+    await Resto.findByIdAndUpdate(restaurant._id, {
+      rating: avgRating,
+      numReviews: numReviews,
+    });
+
     console.log("Review Saved:", newReview); 
 
     res.redirect(`/view_resto/${restoName}`);
@@ -354,9 +369,19 @@ app.post("/edit_review/:id", async (req, res) => {
       { new: true }
     );
 
+
     if (!updatedReview) {
       return res.status(404).send("Review not found.");
     }
+
+    const reviews = await Review.find({ restoName: updatedReview.restoName });
+    const numReviews = reviews.length;
+    const avgRating = reviews.reduce((acc, review) => acc + review.rating, 0) / numReviews;
+
+    await Resto.findOneAndUpdate({ name: updatedReview.restoName }, {
+      rating: avgRating,
+      numReviews: numReviews,
+    });
 
     res.redirect("/view_profile");
   } catch (error) {

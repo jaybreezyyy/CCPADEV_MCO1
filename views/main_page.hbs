@@ -55,7 +55,9 @@
                   
                     <span>
                       <div class="review_name">{{this.name}}</div>
-                      <p class="stars">{{this.rating}}</p>
+                      {{#times this.rating}}
+                      <span class="stars">★</span>
+                      {{/times}}
                       <a href="/view_resto/{{this.name}}">             <!-- ?? -->
                         <img src="{{this.storeImage}}" />
                       </a>

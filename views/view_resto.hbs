@@ -39,7 +39,11 @@
         <div class="establishmentprofile">
           <div class="info">
             <div class="title"><h1><span class="green">{{name}}</span></h1></div>
-            <div class="rating">{{rating}}</div>
+            <div class ="stars">
+            {{#times this.rating}}
+            <span class="rating">★</span>
+            {{/times}}
+            </div>
             <div class="description"><p>{{description}}</p>
             <div class="reviewbutton">
                <a href="/write_review/{{name}}" class="buttondesign">
