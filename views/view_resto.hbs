@@ -72,9 +72,11 @@
         </div>
         <div class="body"><p>{{this.body}}</p></div>
         <div class="feedback">
-          <button class="helpful-button" style="font-size:24px">
-            Mark as Helpful ({{this.helpfulCount}}) <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+          <form action="/mark_helpful/{{this._id}}" method="POST">
+          <button class="helpful-button" data-review-id="{{this._id}}" id="helpful-button-{{this._id}}" style="font-size:24px">
+            Mark as Helpful (<span id="helpful-count-{{this._id}}">{{this.helpfulCount}}</span>) <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
           </button>
+          </form>
         </div>
       </div>
     {{/each}}
