@@ -1,0 +1,371 @@
+/*header*/
+
+.page {
+  display: flex;
+  height: auto;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_button {
+  background-color: white;
+  border: none;
+  color: rgb(98, 98, 98);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 180px;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+.green {
+  color: rgb(8, 120, 48);
+}
+
+.searchbar {
+  display: inline-flex;
+  width: 700px;
+  height: 100%;
+  vertical-align: top;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  border-radius: 5px;
+  border-style: none;
+  width: 650px;
+  height: 30px;
+  margin-right: 0;
+  background-color: rgb(201, 200, 200);
+}
+
+.search_button {
+  border-radius: 5px;
+  border-style: none;
+  margin-left: 0;
+  height: 30px;
+  text-align: center;
+  margin-top: 1px;
+  background-color: rgb(8, 120, 48);
+  vertical-align: top;
+}
+
+.search_button:hover {
+  border-radius: 5px;
+  border-style: none;
+  margin-left: 0;
+  height: 30px;
+  text-align: center;
+  margin-top: 1px;
+  background-color: rgba(8, 120, 48, 0.7);
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.search_button:active {
+  border-radius: 5px;
+  border-style: none;
+  margin-left: 0;
+  height: 30px;
+  text-align: center;
+  margin-top: 1px;
+  background-color: rgba(8, 120, 48, 0.5);
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.profilebuttons {
+  display: inline-flex;
+  width: auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.login_button {
+  font-size: 15px;
+  font-family: Helvetica;
+  margin-right: 3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.signup_button {
+  font-size: 15px;
+  font-family: Helvetica;
+  margin-right: 3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+.view_profile_button {
+  font-size: 15px;
+  font-family: Helvetica;
+  margin-right: 3px;
+  border-radius: 5px;
+  border-style: none;
+  height: 30px;
+  background-color: rgb(12, 170, 68);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  height: auto;
+  text-align: center;
+  margin-left: 15px;
+  padding-left: 20;
+  padding-right: 20;
+}
+
+/* content */
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+.campus_facade {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.slogan {
+  font-family: "Gelasio", serif;
+  text-align: left;
+  margin: 0;
+  font-size: 63px;
+  margin-right: 50px;
+}
+
+.slogan_text {
+  display: inline-block;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.campus_image {
+  height: 260px;
+  margin: 0;
+  margin-right: 20px;
+  width: auto;
+}
+
+.middle_text {
+  width: 100%;
+  font-family: "Kalam", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  font-size: 40px;
+}
+
+.local-flavors-section{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 10%;
+}
+
+.restogallery {
+  width: 100%;
+  font-family: "Hanuman", serif;
+  overflow: hidden;
+  display: flex;
+}
+
+.review1, .review2, .review3, .review4, .review5 {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  margin: 0;
+  padding-left: 20px;
+}
+
+/*.review1 p {
+  margin: 0;
+}*/
+
+.review1_image,
+.review2_image,
+.review3_image,
+.review4_image,
+.review5_image {
+  height: 140px;
+}
+
+/*.review2 {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  margin: 0;
+  padding-left: 40px;
+}*/
+
+.stars {
+  color: rgb(12, 170, 68);
+  margin: 0;
+}
+
+/*.review1_name {
+  height: auto;
+  width: auto;
+  margin: 100px;
+}
+
+.review2_name {
+  margin: 0;
+}*/
+
+.footer {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  font-family: "Hanuman", serif;
+}
+
+.contact_information {
+  height: 100%;
+  width: 33%;
+  background-color: #4d564f;
+}
+
+.contact_information p {
+  margin: 0;
+  margin-bottom: 3px;
+  padding-left: 30px;
+  color: white;
+}
+
+.address {
+  height: 100%;
+  width: 33%;
+  background-color: #4d564f;
+}
+
+.address p {
+  margin: 0;
+  margin-bottom: 3px;
+  padding-left: 23px;
+  color: white;
+}
+
+.copyright_notice {
+  height: 100%;
+  width: 34%;
+  background-color: #4d564f;
+}
+
+.copyright_notice p {
+  margin: 0;
+  margin-bottom: 3px;
+  padding-left: 23px;
+  color: white;
+}
+
+.copyright_text {
+  font-size: 8px;
+}
+
+.restogallery{
+  width: 900px;
+  display: flex;
+  overflow-x: scroll;
+  gap: 20px; /* Add gap between images */
+  padding: 10px;
+}
+
+.restogallery span {
+  display: inline-block;
+  flex: none;
+  max-width: 300px;
+}
+
+.restogallery div{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+  padding: 10px;
+  flex: none;
+}
+
+.restogallery  img{
+  height: 200px;
+  width: auto;
+  transform: scale(100%);
+  transition: transform 0.5s;
+}
+
+.gallery-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+#leftArrow, #rightArrow{
+  width: 50px;
+  cursor: pointer;
+  margin: 40px;
+}
+
+.restogallery img:hover {
+  filter: grayscale(0);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.review_name {
+  font-size: 20px;
+  font-weight: bold;
+}

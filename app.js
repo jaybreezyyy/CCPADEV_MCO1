@@ -480,9 +480,34 @@ app.get("/view_profile", async (req, res) => {
 
 
 
-app.get("/visit_profile", (req, res) => {
-  res.render("visit_profile");
+app.get("/visit_profile/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) {
+      return res.status(404).send("User not found.");
+    }
+
+    // Fetch the user's reviews
+    const reviews = await Review.find({ username: req.params.username }).sort({ date: -1 });
+
+    // Fetch restaurant details for each review
+    const reviewsWithDetails = await Promise.all(
+      reviews.map(async (review) => {
+        const resto = await Resto.findOne({ name: review.restoName });
+        return {
+          ...review._doc,
+          restoImage: resto ? resto.mainImage : "/uploads/default.png",
+        };
+      })
+    );
+
+    res.render("visit_profile", { user, reviews: reviewsWithDetails });
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
+
 
 app.get("/write_review", (req, res) => {
   res.render("write_review");
