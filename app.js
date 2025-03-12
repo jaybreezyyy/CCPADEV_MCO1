@@ -155,6 +155,14 @@ app.get("/edit_establishment/:id", (req, res) => {
     .catch((error) => {
       console.error("Error finding restaurant:", error);
     });
+
+    /*try{
+    const resto = await Resto.findById(req.params.id);
+    res.render("edit_establishment", { resto: resto});
+    } catch (error) {
+      console.error("Error editing establishment:", error);
+      res.redirect("/admin_page");
+    } */
   });
 
 
@@ -556,18 +564,42 @@ res.render("view_resto", {
       return res.status(404).send("Restaurant not found.");
     }
 
-    res.render("view_resto", {
+   /* res.render("view_resto", {
       name: resto.name,
       rating: resto.rating,
       description: resto.description,
       image: resto.mainImage,
       reviews: reviews, // Pass reviews to the template
-    });
+    });*/
   } catch (error) {
     console.error("Error fetching restaurant:", error);
     res.status(500).send("Internal Server Error");
   }
 });
+
+//helpfulCount functionality
+app.post("/mark_helpful/:reviewId", async (req, res) => {
+  try {
+      const reviewId = req.params.reviewId;
+      const review = await Review.findById(reviewId);
+
+      if (!review) {
+          return res.status(404).send("Review not found");
+      }
+
+      review.helpfulCount += 1; 
+      await review.save();
+
+      res.redirect("back"); 
+  } catch (error) {
+      console.error("Error updating helpful count:", error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
 
 
 app.get("/search", async (req, res) => {
