@@ -257,6 +257,7 @@ input {
   width: 100%;
   align-items: center;
   margin-bottom: 5%;
+  margin-top: 30px
 }
 .editbutton {
   margin-top: 50px;
@@ -357,3 +358,4 @@ input {
 .copyright_text {
   font-size: 8px;
 }
+
