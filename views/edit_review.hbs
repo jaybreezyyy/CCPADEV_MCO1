@@ -66,19 +66,20 @@
               </div>
 
               <div class="titletext">Edit Body:</div>
-              <textarea name="body" class="userinput">{{review.body}}</textarea>
+              <textarea  name="body" class="review-input" required>{{review.body}}</textarea>
             </form>
 
             <!-- Delete Form (Separate for deleting) -->
             <form id="deleteReviewForm" action="/delete_review/{{review._id}}" method="POST"></form>
 
             <!-- Buttons for saving and deleting -->
-            <div class="saveanddelete">
+            
+
+          </div>
+          <div class="saveanddelete">
               <button type="button" class="buttondesign" onclick="submitEditForm()">Save Changes</button>              
               <button type="button" class="deletebuttondesign" onclick="submitDeleteForm()">Delete Review</button>
             </div>
-
-          </div>
         </div>
       </div>
     </div>
