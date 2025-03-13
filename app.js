@@ -331,7 +331,6 @@ app.post("/write_review", async (req, res) => {
 
     await Resto.findByIdAndUpdate(restaurant._id, {
       rating: avgRating,
-      numReviews: numReviews,
     });
 
     console.log("Review Saved:", newReview); 
@@ -380,7 +379,6 @@ app.post("/edit_review/:id", async (req, res) => {
 
     await Resto.findOneAndUpdate({ name: updatedReview.restoName }, {
       rating: avgRating,
-      numReviews: numReviews,
     });
 
     res.redirect("/view_profile");
