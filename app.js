@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
 const session = require("express-session");
+const bcrypt = require('bcryptjs');
+const saltRounds = 10
 
 atlas_pw = process.env.MONGODB_PASSWORD;
 secret_key = process.env.SESSION_SECRET;
@@ -76,7 +78,7 @@ hbs.registerHelper("eq", function (a, b) {
 
 //user schema - move to models folder
 const usersSchema = new mongoose.Schema({
-  username: { type: String, required: true },
+  username: { type: String, required: true , unique: true},
   password: { type: String, required: true }, 
   avatar: { type: String, default: "default.png" },
   short_description: String
@@ -225,53 +227,40 @@ app.get("/edit_profile", (req, res) => {
 app.post("/edit_profile", upload.single("avatar"), async (req, res) => {
   try {
     if (!req.session.user) {
-      return res.redirect("/login"); // redirect if not logged in
+      return res.redirect("/login");
     }
 
     const { new_name, new_pass, short_desc } = req.body;
-    const avatar = req.file ? req.file.filename : req.session.user.avatar; // keep old avatar if no new one
+    const avatar = req.file ? req.file.filename : req.session.user.avatar;
 
-    // update user in the database
+    // Prepare update data
+    const updateData = {
+      username: new_name || req.session.user.username,
+      avatar: avatar,
+      short_description: short_desc || req.session.user.short_description
+    };
+
+    // Only hash and update password if a new one was provided
+    if (new_pass) {
+      updateData.password = await bcrypt.hash(new_pass, saltRounds);
+    }
+
     await User.updateOne(
       { username: req.session.user.username }, 
-      { 
-        username: new_name || req.session.user.username,
-        password: new_pass || req.session.user.password,
-        avatar: avatar,
-        short_description: short_desc || req.session.user.short_description
-      }
+      updateData
     );
 
-    // update session with new details
+    // Update session
     req.session.user = {
       username: new_name || req.session.user.username,
       avatar: avatar,
       short_description: short_desc || req.session.user.short_description
     };
 
-    res.redirect("/view_profile"); // redirect to updated profile
+    res.redirect("/view_profile");
   } catch (error) {
     console.error("Profile Update Error:", error);
     res.send("<script>alert('Error updating profile. Try again.'); window.location='/edit_profile';</script>");
-  }
-});
-
-app.post("/delete_profile", async (req, res) => {
-  try {
-    if (!req.session.user) {
-      return res.redirect("/login"); // Ensure user is logged in
-    }
-
-    // delete user from the database
-    await User.deleteOne({ username: req.session.user.username });
-
-    // destroy session
-    req.session.destroy(() => {
-      res.redirect("/signup"); // Redirect to signup page after deletion
-    });
-  } catch (error) {
-    console.error("Delete Profile Error:", error);
-    res.send("<script>alert('Error deleting profile. Try again.'); window.location='/edit_profile';</script>");
   }
 });
 
@@ -408,25 +397,26 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    // Prevent simultaneous login of both user and admin
     if (req.session.admin) {
-      req.session.destroy(); // Log out admin before user login
+      req.session.destroy();
     }
 
     const { name, password } = req.body;
-    const check = await User.findOne({ username: name });
+    const user = await User.findOne({ username: name });
 
-    if (!check) {
+    if (!user) {
       return res.send("<script>alert('User not found. Please sign up.'); window.location='/login';</script>");
     }
 
-    if (check.password === password) {
+    // compare hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
+    
+    if (isMatch) {
       req.session.user = {
-        username: check.username,
-        avatar: check.avatar,
-        short_description: check.short_description,
+        username: user.username,
+        avatar: user.avatar,
+        short_description: user.short_description,
       };
-
       res.redirect("/view_profile");
     } else {
       res.send("<script>alert('Wrong password. Try again.'); window.location='/login';</script>");
@@ -449,22 +439,31 @@ app.get("/signup", (req, res) => {
 
 app.post("/signup", upload.single("avatar"), async (req, res) => {
   try {
-      const { username, password, short_description } = req.body;
-      const avatar = req.file ? req.file.filename : "default.png";
+    const { username, password, short_description } = req.body;
+    const avatar = req.file ? req.file.filename : "default.png";
 
-      // check if the username is already taken
-      const existingUser = await User.findOne({ username });
-      if (existingUser) {
-          return res.send("<script>alert('Username already exists. Please choose another one.'); window.location='/signup';</script>");
-      }
+    // Check if username exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.send("<script>alert('Username already exists. Please choose another one.'); window.location='/signup';</script>");
+    }
 
-      // if unique, save user
-      const newUser = new User({ username, password, avatar, short_description });
-      await newUser.save();
-      res.redirect("/login");
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Create new user with hashed password
+    const newUser = new User({ 
+      username, 
+      password: hashedPassword, 
+      avatar, 
+      short_description 
+    });
+
+    await newUser.save();
+    res.redirect("/login");
   } catch (error) {
-      console.error("Signup Error:", error);
-      res.send("<script>alert('Error signing up. Please try again.'); window.location='/signup';</script>");
+    console.error("Signup Error:", error);
+    res.send("<script>alert('Error signing up. Please try again.'); window.location='/signup';</script>");
   }
 });
 
