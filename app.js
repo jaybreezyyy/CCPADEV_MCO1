@@ -266,16 +266,20 @@ app.post("/edit_profile", upload.single("avatar"), async (req, res) => {
 
 app.get('/write_review/:restoName', async (req, res) => {
   try {
-      const restaurant = await Resto.findOne({ name: req.params.restoName });
+    if (!req.session.user) {
+      return res.redirect("/login");
+    }
 
-      if (!restaurant) {
-          return res.status(404).send("Restaurant not found.");
-      }
+    const restaurant = await Resto.findOne({ name: req.params.restoName });
 
-      res.render('write_review', { restaurant });
+    if (!restaurant) {
+      return res.status(404).send("Restaurant not found.");
+    }
+
+    res.render('write_review', { restaurant });
   } catch (err) {
-      console.error("Error fetching restaurant for review:", err);
-      res.status(500).send("Internal Server Error");
+    console.error("Error fetching restaurant for review:", err);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -289,8 +293,8 @@ app.post("/write_review", async (req, res) => {
     const { restoName, title, rating, body,helpfulCount } = req.body;
 
     if (!restoName || !title || !rating || !body) {
-      return res.status(400).send("All fields are required.");
-    }
+      return res.send("<script>alert('All fields are required.'); window.location='/write_review';</script>");
+      }
 
     if (!req.session.user) {
       return res.status(401).send("You must be logged in to post a review.");
@@ -348,6 +352,15 @@ app.get("/edit_review/:id", async (req, res) => {
 app.post("/edit_review/:id", async (req, res) => {
   try {
     const { title, rating, body } = req.body;
+
+    if (!title || !body) {
+      return res.send(`
+        <script>
+          alert('Title and review body cannot be empty');
+          window.location.href = '/edit_review/${req.params.id}';
+        </script>
+      `);
+    }
 
     const updatedReview = await Review.findByIdAndUpdate(
       req.params.id,
