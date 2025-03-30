@@ -7,10 +7,12 @@ const multer = require("multer");
 const path = require("path");
 const session = require("express-session");
 
+atlas_pw = process.env.MONGODB_PASSWORD;
+secret_key = process.env.SESSION_SECRET;
 
 //mongodb+srv://joseandreocanilao:<db_password>@cluster0.3lzzu.mongodb.net/
-atlas_pw = 1234;
-secret_key = "1234";
+//atlas_pw = 1234;
+//secret_key = "1234";
 const atlas = "mongodb+srv://joseandreocanilao:" + atlas_pw + "@cluster0.3lzzu.mongodb.net/users";
 
 //express app
@@ -96,7 +98,6 @@ const restoSchema = new mongoose.Schema({
     rating: { type: Number, default: 0},
   });
 const Resto = mongoose.model("Resto", restoSchema); 
-
 
 //write review schema
 const createReviewSchema = new mongoose.Schema({
@@ -273,9 +274,6 @@ app.post("/delete_profile", async (req, res) => {
     res.send("<script>alert('Error deleting profile. Try again.'); window.location='/edit_profile';</script>");
   }
 });
-
-
-
 
 app.get('/write_review/:restoName', async (req, res) => {
   try {
@@ -665,7 +663,6 @@ app.get("/search", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
 
 
 //404 page
