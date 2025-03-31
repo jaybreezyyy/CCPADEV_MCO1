@@ -77,41 +77,11 @@ hbs.registerHelper("eq", function (a, b) {
 
 
 //user schema - move to models folder
-const usersSchema = new mongoose.Schema({
-  username: { type: String, required: true , unique: true},
-  password: { type: String, required: true }, 
-  avatar: { type: String, default: "default.png" },
-  short_description: String
-});
-const User = mongoose.model("User", usersSchema);
+const User = require("./models/User");
+const Admin = require("./models/Admin");
+const Resto = require("./models/Resto");
+const Review = require("./models/Review");
 
-
-const adminSchema = new mongoose.Schema({
-  username: { type: String, required: true},
-  password: { type:String, required: true}
-});
-const Admin = mongoose.model("Admin", adminSchema);
-
-const restoSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    storeImage: { type: String, required: true },
-    mainImage: { type: String, required: true },
-    description: { type: String, required: true},
-    rating: { type: Number, default: 0},
-  });
-const Resto = mongoose.model("Resto", restoSchema); 
-
-//write review schema
-const createReviewSchema = new mongoose.Schema({
-  restoName: { type: String, required: true },
-  username: { type: String, required: true }, // user must be logged in
-  title: { type: String, required: true },
-  rating: { type: Number, required: true },
-  body: { type: String, required: true },
-  date: { type: Date, default: Date.now },
-  helpfulCount: { type: Number, default: 0 }
-});
-const Review = mongoose.model("Review", createReviewSchema);
 //routing - move to routes folder 
 app.get("/", async (req, res) => {
   const restos = await Resto.find({});
