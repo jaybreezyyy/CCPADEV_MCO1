@@ -485,26 +485,34 @@ app.get("/view_establishment", (req, res) => {
 });
 
 app.get("/view_profile", async (req, res) => {
+  // Check if admin is logged in and redirect to admin page
+  if (req.session.admin) {
+    return res.redirect("/admin_page");
+  }
+
+  
   if (!req.session.user) {
-    return res.redirect("/login"); // Redirect if not logged in
+    return res.redirect("/login");
   }
 
   try {
-    // fetch the user’s reviews
     const reviews = await Review.find({ username: req.session.user.username }).sort({ date: -1 });
-
-    // fetch the restaurant details for each review
+    
     const reviewsWithDetails = await Promise.all(
       reviews.map(async (review) => {
         const resto = await Resto.findOne({ name: review.restoName });
         return {
           ...review._doc,
-          restoImage: resto ? resto.mainImage : "/uploads/default.png", // Use default if no image
+          restoImage: resto ? resto.mainImage : "/uploads/default.png",
         };
       })
     );
 
-    res.render("view_profile", { user: req.session.user, reviews: reviewsWithDetails });
+    res.render("view_profile", { 
+      user: req.session.user, 
+      reviews: reviewsWithDetails,
+      admin: req.session.admin // Pass admin status to template
+    });
   } catch (error) {
     console.error("Error fetching user reviews:", error);
     res.status(500).send("Internal Server Error");
