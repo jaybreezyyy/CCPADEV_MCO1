@@ -63,7 +63,7 @@
     {{#each reviews}}
       <div class="reviewpost">
         <div class="postinfo">
-          <div >
+          <div>
             <img src="/uploads/{{this.avatar}}" alt="User Avatar" class="profilepicture">
           </div>
 
@@ -73,21 +73,23 @@
             </div>
             <div class="title">title: {{this.title}}</div>
           </div>
-
         </div>
         <div class="body"><p>{{this.body}}</p></div>
         <div class="feedback">
           <form action="/mark_helpful/{{this._id}}" method="POST">
-          <button class="helpful-button" data-review-id="{{this._id}}" id="helpful-button-{{this._id}}" style="font-size:24px">
-            Mark as Helpful (<span id="helpful-count-{{this._id}}">{{this.helpfulCount}}</span>) <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
-          </button>
+            <button class="helpful-button" data-review-id="{{this._id}}" id="helpful-button-{{this._id}}" style="font-size:24px">
+              Mark as Helpful (<span id="helpful-count-{{this._id}}">{{this.helpfulCount}}</span>) <i class="fa fa-thumbs-up thumb-icon" style="color:green"></i>
+            </button>
           </form>
+          {{#ifEquals this.username ../loggedInUser}}
+            <a href="/edit_review/{{this._id}}" class="edit-button" style="font-size:16px; color:blue; text-decoration:underline;">Edit</a>
+          {{/ifEquals}}
         </div>
       </div>
     {{/each}}
   {{else}}
     <p style="text-align: center; font-family: 'Hanuman', serif;">
-    No reviews yet. Be the first to write a review!
+      No reviews yet. Be the first to write a review!
     </p>
   {{/if}}
 </div>
