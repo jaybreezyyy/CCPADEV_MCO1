@@ -76,163 +76,47 @@ hbs.registerHelper("eq", function (a, b) {
 });
 
 
-//user schema - move to models folder
+//Models
 const User = require("./models/User");
 const Admin = require("./models/Admin");
 const Resto = require("./models/Resto");
 const Review = require("./models/Review");
 
-//routing - move to routes folder 
-app.get("/", async (req, res) => {
-  const restos = await Resto.find({});
-  res.render("main_page", {
-    restosList: restos
-  });
-});
+//Controllers for Resto
+const restoController = require("./controllers/restoController");
+//get and render all restaurannts
+app.get("/", restoController.getAllRestos);
+//add establishment page
+app.get("/add_establishment", restoController.renderAddEstablishment);
+//save a new establishment to the database
+app.post(
+  "/save_establishment",
+  upload.fields([
+    { name: "storeImage", maxCount: 1 },
+    { name: "mainImage", maxCount: 1 },
+  ]),
+  restoController.saveEstablishment
+);
+//render the "Edit Establishment" page
+app.get("/edit_establishment/:id", restoController.renderEditEstablishment);
+//update establishment
+app.post(
+  "/update_establishment",
+  upload.fields([
+    { name: "storeImage", maxCount: 1 },
+    { name: "mainImage", maxCount: 1 },
+  ]),
+  restoController.updateEstablishment
+);
+//delete an establishment
+app.get("/delete_establishment/:id", restoController.deleteEstablishment);
 
-//add establishment
-app.get("/add_establishment", (req, res) => {
-  res.render("add_establishment");
-});
-//add establishment
-app.post("/save_establishment",upload.fields([{ name: 'storeImage', maxCount: 1}, {name: 'mainImage', maxCount: 1}]), (req, res)=>{
-  
-  const resto = new Resto({
-    name: req.body.name,
-    storeImage: '/uploads/' + req.files['storeImage'][0].filename,
-    mainImage: '/uploads/' + req.files['mainImage'][0].filename,
-    description: req.body.description
-  });
-
-  resto.save()
-  .then(() => {
-    res.redirect("/");
-  })
-  .catch((error) => {
-    console.error("Error finding resto:", error);
-  });
-});
-
-app.get("/edit_establishment/:id", (req, res) => {
-  const restoId = req.params.id;
-  Resto.findById(restoId)
-  .then((resto) => {
-    if(resto) {
-      res.render("edit_establishment", {
-        resto: resto,
-      });
-    } else {
-      console.log("Restaurant not found");
-      }
-    })
-    .catch((error) => {
-      console.error("Error finding restaurant:", error);
-    });
-
-    /*try{
-    const resto = await Resto.findById(req.params.id);
-    res.render("edit_establishment", { resto: resto});
-    } catch (error) {
-      console.error("Error editing establishment:", error);
-      res.redirect("/admin_page");
-    } */
-  });
-
-
-app.post("/update_establishment", upload.fields([{ name: 'storeImage', maxCount: 1 }, { name: 'mainImage', maxCount: 1 }]), (req, res) => {
-  const restoId = req.body.id;
-  const name = req.body.name;
-  const description = req.body.description;
-  
-  const updateData ={
-    name: name,
-    description: description,
-  };
-  
-  if(req.files['storeImage']){
-    updateData.storeImage = '/uploads/' + req.files['storeImage'][0].filename;
-  }
-
-  if(req.files['mainImage']){
-    updateData.mainImage = '/uploads/' + req.files['mainImage'][0].filename;
-  }
-
-  Resto.findByIdAndUpdate(restoId, updateData)
-    .then((resto) => {
-      if (resto) {
-        res.redirect("/admin_page");
-      } else {
-        console.log("Restaurant not found");
-      }
-    })
-    .catch((error) => {
-      console.error("Error finding Restaurant:", error);
-    });
-});
-
-app.get("/delete_establishment/:id", async (req, res) => {
-  const restoId = req.params.id;
-  Resto.findByIdAndDelete(restoId)
-  .then((resto) => {
-    if(resto) {
-      res.redirect("/admin_page");
-    } else {
-      console.log("Restaurant not found");
-    }
-  })
-  .catch((error) => {
-    console.log("Error finding restaurant", error);
-  });
-});
-
-app.get("/edit_profile", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect("/login"); // redirect if not logged in
-  }
-
-  res.render("edit_profile", { user: req.session.user });
-});
-
-
-app.post("/edit_profile", upload.single("avatar"), async (req, res) => {
-  try {
-    if (!req.session.user) {
-      return res.redirect("/login");
-    }
-
-    const { new_name, new_pass, short_desc } = req.body;
-    const avatar = req.file ? req.file.filename : req.session.user.avatar;
-
-    // Prepare update data
-    const updateData = {
-      username: new_name || req.session.user.username,
-      avatar: avatar,
-      short_description: short_desc || req.session.user.short_description
-    };
-
-    // Only hash and update password if a new one was provided
-    if (new_pass) {
-      updateData.password = await bcrypt.hash(new_pass, saltRounds);
-    }
-
-    await User.updateOne(
-      { username: req.session.user.username }, 
-      updateData
-    );
-
-    // Update session
-    req.session.user = {
-      username: new_name || req.session.user.username,
-      avatar: avatar,
-      short_description: short_desc || req.session.user.short_description
-    };
-
-    res.redirect("/view_profile");
-  } catch (error) {
-    console.error("Profile Update Error:", error);
-    res.send("<script>alert('Error updating profile. Try again.'); window.location='/edit_profile';</script>");
-  }
-});
+//Controllers for User
+const userController = require("./controllers/userController");
+//render the "Edit Profile" page
+app.get("/edit_profile", userController.renderEditProfile);
+//update the profile
+app.post("/edit_profile", upload.single("avatar"), userController.updateProfile);
 
 app.get('/write_review/:restoName', async (req, res) => {
   try {
