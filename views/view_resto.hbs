@@ -7,6 +7,31 @@
   <link rel="stylesheet" href="/css/view_resto.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Hanuman:wght@100;300;400;700;900&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
+   <style>
+    .usertitle{
+      width: 100%;
+    }
+
+    .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; 
+        width: 100%; 
+      }
+
+    .editreview {
+      height: 25px;
+      width: 25px;
+      background-image: url("/images/edit.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 5%;
+      display: inline-block;
+      float: right;
+    }
+  </style>
 </head>
 <body>
   <div class="page">
@@ -39,7 +64,11 @@
         <div class="establishmentprofile">
           <div class="info">
             <div class="title"><h1><span class="green">{{name}}</span></h1></div>
-            <div class="rating">{{rating}}</div>
+            <div class ="stars">
+            {{#times this.rating}}
+            <span class="rating">★</span>
+            {{/times}}
+            </div>
             <div class="description"><p>{{description}}</p>
             <div class="reviewbutton">
                <a href="/write_review/{{name}}" class="buttondesign">
@@ -67,7 +96,10 @@
             <div class="username">
               username: <span><a href="/visit_profile/{{this.username}}" class="username">{{this.username}}</a></span>
             </div>
-            <div class="title">title: {{this.title}}</div>
+            <div class="title-row">
+              <div class="title">title: {{this.title}} </div>
+              <span><a href="/edit_review/{{this._id}}" class="editreview"></a></span>
+            </div>
           </div>
 
         </div>
@@ -87,8 +119,6 @@
     </p>
   {{/if}}
 </div>
-
-
 
 
       <div class="footer">
