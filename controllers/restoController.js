@@ -1,4 +1,6 @@
 const Resto = require("../models/Resto");
+const Review = require("../models/Review");
+const User = require("../models/User");
 
 //fetch and render restaurants
 exports.getAllRestos = async (req, res) => {
@@ -88,18 +90,74 @@ exports.updateEstablishment = async (req, res) => {
 
 //function to delete an establishment
 exports.deleteEstablishment = async (req, res) => {
-    try {
-      const restoId = req.params.id;
-      const resto = await Resto.findByIdAndDelete(restoId);
-  
-      if (resto) {
-        res.redirect("/admin_page");
-      } else {
-        console.log("Restaurant not found");
-        res.status(404).send("Restaurant not found");
-      }
-    } catch (error) {
-      console.error("Error deleting restaurant:", error);
-      res.status(500).send("Internal Server Error");
+  try {
+    const restoId = req.params.id;
+    const resto = await Resto.findByIdAndDelete(restoId);
+
+    if (resto) {
+      res.redirect("/admin_page");
+    } else {
+      console.log("Restaurant not found");
+      res.status(404).send("Restaurant not found");
     }
-  };
+  } catch (error) {
+    console.error("Error deleting restaurant:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+//function to render the "View Resto" page
+exports.renderViewResto = async (req, res) => {
+  try {
+    const resto = await Resto.findOne({ name: req.params.name });
+    if (!resto) {
+      return res.status(404).send("Restaurant not found.");
+    }
+
+    const reviews = await Review.find({ restoName: req.params.name }).sort({
+      date: -1,
+    });
+
+    const reviewsWithAvatars = await Promise.all(
+      reviews.map(async (review) => {
+        const user = await User.findOne({ username: review.username });
+        return {
+          ...review._doc,
+          avatar: user ? user.avatar : "default.png", // Use default if no avatar
+        };
+      })
+    );
+
+    res.render("view_resto", {
+      name: resto.name,
+      rating: resto.rating,
+      description: resto.description,
+      image: resto.mainImage,
+      reviews: reviewsWithAvatars, //updated reviews with avatars
+    });
+  } catch (error) {
+    console.error("Error fetching restaurant:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+//function to handle restaurant search
+exports.searchResto = async (req, res) => {
+  try {
+    const query = req.query.query; //get the search query from the input
+    const resto = await Resto.findOne({
+      name: { $regex: new RegExp(query, "i") },
+    });
+
+    if (!resto) {
+      return res.send(
+        "<script>alert('Restaurant not found!'); window.location='/';</script>"
+      );
+    }
+
+    res.redirect(`/view_resto/${resto.name}`);
+  } catch (error) {
+    console.error("Search Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
