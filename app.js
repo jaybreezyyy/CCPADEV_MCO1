@@ -311,6 +311,11 @@ app.get("/edit_review/:id", async (req, res) => {
       return res.status(404).send("Review not found.");
     }
 
+    // check if the logged-in user is the author of the review
+    if (review.username !== req.session.user?.username) {
+      return res.send("<script>alert('You can only edit your own reviews.'); window.location='/view_profile';</script>");
+    }
+
     res.render("edit_review", { review });
   } catch (error) {
     console.error("Error fetching review for edit:", error);
@@ -324,25 +329,29 @@ app.post("/edit_review/:id", async (req, res) => {
     const { title, rating, body } = req.body;
 
     if (!title || !body) {
-      return res.send(`
-        <script>
-          alert('Title and review body cannot be empty');
-          window.location.href = '/edit_review/${req.params.id}';
-        </script>
-      `);
+      return res.send(
+        `<script>alert('Title and review body cannot be empty'); window.location.href = '/edit_review/${req.params.id}';</script>`
+      );
     }
 
+    const review = await Review.findById(req.params.id);
+    if (!review) {
+      return res.status(404).send("Review not found.");
+    }
+
+    // check if the logged-in user is the author of the review
+    if (review.username !== req.session.user?.username) {
+      return res.status(403).send("You can only edit your own reviews.");
+    }
+
+    // update the review
     const updatedReview = await Review.findByIdAndUpdate(
       req.params.id,
       { title, rating: parseInt(rating), body },
       { new: true }
     );
 
-
-    if (!updatedReview) {
-      return res.status(404).send("Review not found.");
-    }
-
+    // Recalculate the average rating of the restaurant
     const reviews = await Review.find({ restoName: updatedReview.restoName });
     const numReviews = reviews.length;
     const avgRating = reviews.reduce((acc, review) => acc + review.rating, 0) / numReviews;
