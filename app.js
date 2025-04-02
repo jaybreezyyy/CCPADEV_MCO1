@@ -6,8 +6,6 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
 const session = require("express-session");
-const bcrypt = require('bcryptjs');
-const saltRounds = 10
 
 atlas_pw = process.env.MONGODB_PASSWORD;
 secret_key = process.env.SESSION_SECRET;

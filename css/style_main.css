@@ -359,6 +359,7 @@ input {
   align-items: center;
   justify-content: center;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 #leftArrow, #rightArrow{
