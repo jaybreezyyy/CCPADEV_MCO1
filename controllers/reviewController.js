@@ -150,6 +150,19 @@ exports.deleteReview = async (req, res) => {
       return res.status(404).send("Review not found.");
     }
 
+    //recalculate average rating for the restaurant
+    const reviews = await Review.find({ restoName: review.restoName });
+    const numReviews = reviews.length;
+    const avgRating =
+      numReviews > 0
+        ? reviews.reduce((acc, review) => acc + review.rating, 0) / numReviews
+        : 0;
+
+    await Resto.findOneAndUpdate(
+      { name: review.restoName },
+      { rating: avgRating }
+    );
+
     res.redirect("/view_profile");
   } catch (error) {
     console.error("Error deleting review:", error);
